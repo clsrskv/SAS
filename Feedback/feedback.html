@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SAS Visual Analytics Feedback Checkbox</title>
+<style>
+body {
+	font-family: AvenirNext, Helvetica, Arial, sans-serif;
+	font-size: .8889rem;
+	background-color: #FFFFFF;
+}
+
+body::-webkit-scrollbar {
+	width: 0.5em;
+}
+
+body::-webkit-scrollbar:horizontal {
+	height: 0.5em;
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: darkgrey;
+	outline: 1px solid slategrey;
+}
+
+body::-webkit-scrollbar-button {
+	display: none;
+}
+
+#status {
+	display: block;
+	border-top: 1px solid grey;
+	padding: 3px;
+	text-align: center;
+	position: fixed;
+	width: 100%;
+	bottom: 0px;
+}
+.div-table {
+  display: table;         
+  width: auto;         
+  border-spacing: 5px; /* cellspacing:poor IE support for  this */
+}
+.div-table-row {
+  display: table-row;
+  clear: both;
+}
+.div-table-col {
+  display: table-cell;         
+}
+</style>
+</head>
+<body>
+<div id="feedback_response">
+<p>V&aelig;lg en melding for at foretage registrering.</p>
+</div>
+
+<div id="status">
+</div>
+<script>
+// Object o containing functions and XHR object
+let o = {
+	jes_program: '/Projects/feedback',
+
+	// XHR object persistent in object o
+	xhr: new XMLHttpRequest(),
+
+    // On message event, retrieve data and begin processing
+    onMessage: function(evt) {
+        if (evt && evt.data) {
+			// Check if update is in progress and cancel
+			if (o.xhr.readyState < 4) {
+				o.xhr.abort();
+			}
+			status.clear();
+
+            var results = null;
+            var columnInfo = null;
+
+            self.resultName = evt.data.resultName;
+	
+			let d = document.createElement('div');
+			switch(evt.data.availableRowCount) {
+				case 0: // Object updated before - message empty from SAS VA.
+					print.feedback([
+						"<b>R&aelig;kken kan ikke vises</b>",
+						"Status på den valgte r&aelig;kke har v&aelig;ret &aelig;ndret siden data blev opdateret.",
+						"Opdatér rapporten igen for at vise r&aelig;kken."
+					]);
+					console.log('Data changed since update.', "availableRowCount="+evt.data.availableRowCount)
+				break;
+				case 1: // Show data - print in console if something is rotten (never seen that!).
+					if(evt.data) o.feedback(evt.data.columns, evt.data.data);
+					else console.log("Something went wrong. Message from SAS VA is invalid.");
+				break;
+				default: // If more than one - the message is init when report has been opened.
+					print.feedback("V&aelig;lg en melding for at foretage registrering.");
+					console.log('No data selected.', "availableRowCount="+evt.data.availableRowCount)
+            }
+        }
+    },
+	// Check if string is JSON formatted
+	isJsonString: function(str) {
+		try {
+			JSON.parse(str);
+		} catch (e) {
+			return false;
+		}
+		return true;
+	},
+	// Send AJAX request to SAS Job Execution Server
+	changeStatus: function(e) {
+		let params = {
+			'__pk_id': e.srcElement.value,
+			'__pk_val': e.srcElement.checked,
+			'__pk_col': e.srcElement.getAttribute('pk_col'),
+			'__pk_tbl': e.srcElement.getAttribute('pk_tbl')
+		}
+
+		// Making our connection
+		let url = '/SASJobExecution/?_program='+o.jes_program+'&_params='+encodeURIComponent(JSON.stringify(params));
+		o.xhr.open("GET", url, true);
+	 
+		// function execute after request is successful 
+		o.xhr.onreadystatechange = function () {
+			if(this.readyState < 4)
+				print.status.run(this.readyState);
+			else if(this.readyState == 4 && this.status != 200)
+				print.status.ajax(this.status, this);
+			else if(!(o.isJsonString(this.responseText)))
+				print.status.error(this.responseText);
+			else
+				print.status.done(this.responseText);
+		}
+
+		print.status.run();
+
+		// Sending our request
+		o.xhr.send(params);
+	},
+	// Create visual feedback for user from message event
+    feedback: function(columnInfo, jsonData) {
+		let data = {}
+		let __pk_, __pk_val, __tbl_, _checked_val;
+		// Create data object with columns as keys
+		Object.entries(jsonData[0]).forEach(([key, value]) => {
+			if( columnInfo[key].label.substr(0, 5) == '__pk_' ) {
+				__pk_ = columnInfo[key].label.substring(5);
+				__pk_val = value;
+			}
+			else if( columnInfo[key].label.substr(0, 6) == '__tbl_' ) __tbl_ = columnInfo[key].label.substring(6);
+			else if( columnInfo[key].label == '_checked' ) _checked_val = value=='1'?true:false;
+			else data[columnInfo[key].label] = typeof value == 'string'? value.trim(): value;
+		});
+		// Check if mandatory fields has been defined
+		if(__pk_ && __tbl_ && typeof _checked_val == 'boolean' ) {
+			print.feedback(
+				[
+					// Add input checkkbox
+					o.addInput(__pk_val, __pk_, __tbl_, _checked_val),
+					// Add optional data colums
+					o.addTable(data)
+				]
+			);
+		} else {
+			// Send message if DDC object does not recieve configuration parameters
+			print.feedback([
+				'<b>Ops&aelig;tning mangler</b>',
+				'Id-kolonne ikke fundet. Data skal have kolonne defineret med navngivningen __pk_[navn p&aring; id-kolonne] og __tbl_[caslib.tabelnavn] og kolonnen _checked, som angiver status p&aring; r&aelig;kken som "0" eller "1" i karaktervariabel med l&aelig;ngden 1.'
+			]);
+		}
+	},
+	// Creates input button for visual feedback
+	addInput: function(id, col, tbl, status) {
+		let d = document.createElement('div');
+		let l = document.createElement('label');
+		let i = document.createElement('input');
+		i.addEventListener('change', o.changeStatus);
+		i.name = 'pk_id';
+		i.id = 'input_checkbox';
+		i.type = 'checkbox';
+		i.checked = status;
+		i.value = id;
+		i.setAttribute('pk_col', col);
+		i.setAttribute('pk_tbl', tbl);
+		d.appendChild(i);
+		l.innerText = '';
+		l.htmlFor = 'input_checkbox';
+		d.appendChild(l);
+		return d;
+	},
+	// Creates data table
+	addTable: function(data) {
+		let dt = document.createElement('div');
+		dt.classList.add("div-table");
+		Object.entries(data).forEach(([key, value]) => {
+			let dr = document.createElement('div');
+			dr.classList.add("div-table-row");
+			let dc1 = document.createElement('div');
+			dc1.classList.add("div-table-col");
+			dc1.innerHTML = '<b>' + key + ':</b>';
+			dr.appendChild(dc1);
+			let dc2 = document.createElement('div');
+			dc2.classList.add("div-table-col");
+			dr.appendChild(dc2);
+			dc2.innerHTML = value;
+			dt.appendChild(dr);
+		});
+		return dt;
+	}
+}
+
+// Handle status update after AJAX
+let status = {
+	d: document.getElementById("status"),
+	run: function(state) {
+		let numbers = [null, "\u2460", "\u2461", "\u2463", "\u2464", "\u2465", "\u2466"]; // Emoji numbers
+		this.d.innerHTML = "<span title='Waiting for reply from webserver'>Status: \uD83C\uDFC3\u200D\u2642\uFE0F"; // Running emoji
+		if(state < 4) this.d.innerHTML = this.d.innerHTML + " / " + numbers[state];
+		this.d.innerHTML = this.d.innerHTML + "</span>";
+	},
+	clear: function() {
+		this.d.innerHTML = "<span title='Venter p&aring; brugerinput'>Status: \u2714</span>"; // Done emoji
+	},
+	ajax: function(status, xhr_object) {
+		this.d.innerHTML = "<span title='Kommunikationsfejl - http-status: "+status+"'>Status: \u274C</span>"; // Emoji cross (red)
+		console.log("Communication failure", xhr_object);
+	},
+	error: function(result) {
+		this.d.innerHTML = "<span title='Ugyldigt svar fra web server'>Status: \u274C</span>"; // Emoji cross (red)
+		console.log("Invalid response from web server", result);
+	},
+	done: function(result) {
+		result = JSON.parse(result);
+		console.log("Query done", result);
+		if( result.rc.statusCode == 0) {
+			this.d.innerHTML = "<span title='Opdatering succesfuld!'>Status: \u2714</span>"; // Done emoji
+			console.log("Update succesfull"+result.rc.message);
+		} else {
+			this.d.innerHTML = "<span title='Opdatering fejlede!'>Status: \u274C</span>"; // Emoji cross (red)
+			console.log("Update failed: "+result.rc.message);
+		}
+	}
+}
+
+// Print feedback and status
+let print = {
+	status: status,
+	// Print to feedback_response in GUI
+	feedback: function(d) {
+		if(typeof d == 'string') {
+			d = [d];
+		}
+		Object.entries(d).forEach(([key,value]) => {
+			if(typeof value == 'string') {
+				let div = document.createElement('div');
+				div.innerHTML = value;
+				value = div;
+			}
+			let f = document.getElementById("feedback_response");
+			if( key == 0 ) f.replaceChildren(value);
+			else f.appendChild(value);
+		})
+	}
+}
+
+// Set on message event
+if (window.addEventListener) {
+	// For standards-compliant web browsers
+	window.addEventListener("message", o.onMessage, false);
+} else {
+	window.attachEvent("onmessage", o.onMessage);
+}
+
+</script>
+</body>
+</html>

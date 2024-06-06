@@ -64,4 +64,3 @@ end
 @enduml
 -->
 ![Interaktion og kommunikation](./assets/images/Interaktion_og_kommunikation.svg)
-<img src="./assets/images/Interaktion_og_kommunikation.svg">

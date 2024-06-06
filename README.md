@@ -1,3 +1,3 @@
 # SAS
 
-* [Feedback](./tree/main/Feedback)
+* [Feedback](./Feedback)

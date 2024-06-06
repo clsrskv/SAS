@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" height="1483px" viewBox="0 0 567 1483" width="567px>
+<g>
+<rect fill="#F9F9F9" height="1483" style="stroke:none;stroke-width:1.0;" width="567" x="0" y="0"> </rect>
+<text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="79" x="237.259" y="22.9951">Arkitektur</text>
+<!--cluster SAS Visual Analytics-->
+<g id="cluster_SAS Visual Analytics">
+<path d="M189.0181,300.7969 L347.0181,300.7969 A5.25,5.25 0 0 1 350.5181,304.2969 L357.5181,323.0938 L358.0181,323.0938 A3.5,3.5 0 0 1 361.5181,326.5938 L361.5181,683.2969 A3.5,3.5 0 0 1 358.0181,686.7969 L189.0181,686.7969 A3.5,3.5 0 0 1 185.5181,683.2969 L185.5181,304.2969 A3.5,3.5 0 0 1 189.0181,300.7969 " fill="none" style="stroke:#393939;stroke-width:1.0;"> </path>
+<line style="stroke:#393939;stroke-width:1.0;" x1="185.5181" x2="357.5181" y1="323.0938" y2="323.0938"> </line>
+<text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="159" x="189.5181" y="315.792">SAS Visual Analytics</text>
+</g>
+<!--cluster feedback.html-->
+<g id="cluster_feedback.html">
+<path d="M29.4315,628.3099 C34.8404,613.3298 48.8918,612.2819 58.9831,622.9056 C67.2608,610.0059 79.1025,607.9435 88.9612,621.0856 C98.0451,608.6613 108.7098,610.5156 116.6275,622.4121 C134.2809,606.2158 145.9317,608.421 153.5181,631.7969 C155.9434,632.4102 156.5219,634.2621 154.5767,635.9811 C164.0084,641.3802 165.7736,651.5794 155.4668,657.7843 C166.8606,663.6697 167.8986,674.1461 155.8926,680.4707 C165.6153,686.8217 168.0162,695.2478 156.4996,702.1923 C170.6072,709.159 168.7481,717.1972 159.3634,726.8882 C170.2558,733.9566 172.0522,742.5097 159.7434,749.9603 C169.4948,755.7684 170.3568,763.0139 160.0388,769.1311 C172.5616,775.6932 174.4929,783.8514 162.4009,792.8634 C175.4008,801.1273 170.8988,812.655 159.6447,818.2897 C168.1474,824.4606 169.0073,833.3326 158.3583,838.2704 C172.5164,845.5673 171.5666,853.9446 161.2509,863.9937 C170.4794,872.3922 169.5602,882.5079 157.145,887.0525 C169.4344,891.6272 168.3781,902.9197 159.4354,909.6466 C170.3557,917.1453 167.6397,927.1378 156.328,931.471 C164.7164,942.5372 163.7403,956.9248 146.5181,958.7969 C148.2718,957.5888 149.5103,958.3653 149.8312,960.3049 C140.8858,976.3363 131.0238,977.7455 119.0004,963.4322 C109.0357,977.831 99.5357,977.6955 90.3498,962.6738 C81.2684,979.0237 65.7875,978.5419 57.4102,961.9692 C42.0113,975.7558 26.1981,970.4885 19.5181,951.7969 C20.6905,950.4477 22.2379,950.5058 23.1196,952.147 C12.2375,947.784 9.693,937.2805 19.8045,929.8028 C7.8204,922.4904 6.7813,914.8113 18.5205,906.2079 C8.7432,898.2387 11.424,889.2089 21.7757,884.2197 C9.5643,878.5087 8.8118,871.3305 18.2405,862.1527 C7.4777,854.1109 8.4274,846.3571 18.8301,838.8509 C8.725,834.1074 8.1809,824.273 17.143,817.9876 C6.1011,808.8505 6,800.6728 19.234,793.6187 C8.0558,785.8904 9.7022,778.2104 20.6857,771.968 C7.2336,765.4691 6.5998,757.0251 17.9796,747.7512 C8.4606,740.3571 9.3964,729.091 21.8598,725.5364 C12.6104,719.5857 11.1323,709.6012 21.325,703.1853 C11.4417,694.4608 10.9537,685.8107 22.7286,678.3082 C11.7844,672.8473 12.5181,663.6695 21.5481,657.0969 C6.8293,644.9211 11.4478,632.3889 26.5181,624.7969 C28.9956,624.4112 30.1581,626.0384 29.4315,628.3099 " fill="none" style="stroke:#393939;stroke-width:1.0;"> </path>
+<text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="112" x="30.5181" y="642.792">feedback.html</text>
+</g>
+<!--cluster SAS Job Execution Server-->
+<g id="cluster_SAS Job Execution Server">
+<path d="M157.0181,1032.7969 L356.0181,1032.7969 A5.25,5.25 0 0 1 359.5181,1036.2969 L366.5181,1055.0938 L506.0181,1055.0938 A3.5,3.5 0 0 1 509.5181,1058.5938 L509.5181,1194.2969 A3.5,3.5 0 0 1 506.0181,1197.7969 L157.0181,1197.7969 A3.5,3.5 0 0 1 153.5181,1194.2969 L153.5181,1036.2969 A3.5,3.5 0 0 1 157.0181,1032.7969 " fill="none" style="stroke:#393939;stroke-width:1.0;"> </path>
+<line style="stroke:#393939;stroke-width:1.0;" x1="153.5181" x2="366.5181" y1="1055.0938" y2="1055.0938"> </line>
+<text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="200" x="157.5181" y="1047.792">SAS Job Execution Server</text>
+<rect fill="#FFFFFF" height="42.5938" id="_legend" rx="3.5" ry="3.5" style="stroke:#FFFFFF;stroke-width:0.0;" width="314" x="178.0181" y="1069.0938"> </rect>
+<text fill="#808080" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="202" x="183.0181" y="1087.0889">SAS-kode med anvendelse af</text>
+<text fill="#808080" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="304" x="183.0181" y="1103.3857">JSON libname og SAS CAS Table Action Sets.</text>
+</g>
+<!--cluster Microsoft SQL Server-->
+<g id="cluster_Microsoft SQL Server">
+<path d="M98.5181,1257.7969 C98.5181,1247.7969 281.5181,1247.7969 281.5181,1247.7969 C281.5181,1247.7969 464.5181,1247.7969 464.5181,1257.7969 L464.5181,1456.7969 C464.5181,1466.7969 281.5181,1466.7969 281.5181,1466.7969 C281.5181,1466.7969 98.5181,1466.7969 98.5181,1456.7969 L98.5181,1257.7969 " fill="#A4DBD8" style="stroke:#191919;stroke-width:1.0;"> </path>
+<path d="M98.5181,1257.7969 C98.5181,1267.7969 281.5181,1267.7969 281.5181,1267.7969 C281.5181,1267.7969 464.5181,1267.7969 464.5181,1257.7969 " fill="none" style="stroke:#191919;stroke-width:1.0;"> </path>
+<text fill="#191919" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="168" x="197.5181" y="1282.792">Microsoft SQL Server</text>
+</g>
+<!--entity SAS Table-->
+<g id="elem_SAS Table">
+<path d="M378.2681,53.2969 C378.2681,43.2969 422.7681,43.2969 422.7681,43.2969 C422.7681,43.2969 467.2681,43.2969 467.2681,53.2969 L467.2681,78.5938 C467.2681,88.5938 422.7681,88.5938 422.7681,88.5938 C422.7681,88.5938 378.2681,88.5938 378.2681,78.5938 L378.2681,53.2969 " fill="#A4DBD8" style="stroke:#191919;stroke-width:0.5;"> </path>
+<path d="M378.2681,53.2969 C378.2681,63.2969 422.7681,63.2969 422.7681,63.2969 C422.7681,63.2969 467.2681,63.2969 467.2681,53.2969 " fill="none" style="stroke:#191919;stroke-width:0.5;"> </path>
+<text fill="#191919" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="388.2681" y="80.292">SAS Table</text>
+</g>
+<!--entity CAS Table-->
+<g id="elem_CAS Table">
+<path d="M377.5181,362.2969 C377.5181,352.2969 422.5181,352.2969 422.5181,352.2969 C422.5181,352.2969 467.5181,352.2969 467.5181,362.2969 L467.5181,387.5938 C467.5181,397.5938 422.5181,397.5938 422.5181,397.5938 C422.5181,397.5938 377.5181,397.5938 377.5181,387.5938 L377.5181,362.2969 " fill="#A4DBD8" style="stroke:#191919;stroke-width:0.5;"> </path>
+<path d="M377.5181,362.2969 C377.5181,372.2969 422.5181,372.2969 422.5181,372.2969 C422.5181,372.2969 467.5181,372.2969 467.5181,362.2969 " fill="none" style="stroke:#191919;stroke-width:0.5;"> </path>
+<text fill="#191919" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="387.5181" y="389.292">CAS Table</text>
+</g>
+<!--entity VA Rapport-->
+<g id="elem_VA Rapport">
+<rect fill="#F1F1F1" height="46.2969" rx="3.5" ry="3.5" style="stroke:#181818;stroke-width:0.5;" width="117" x="202.2681" y="490.7969"> </rect>
+<rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="299.2681" y="495.7969"> </rect>
+<rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="297.2681" y="497.7969"> </rect>
+<rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="297.2681" y="501.7969"> </rect>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="217.2681" y="523.792">VA Rapport</text>
+</g>
+<!--entity Data Driven Content-->
+<g id="elem_Data Driven Content">
+<ellipse cx="224.5181" cy="661.7969" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"> </ellipse>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="154.5181" y="691.792">Data Driven Content</text>
+</g>
+<!--entity Bruger-->
+<g id="elem_Bruger">
+<ellipse cx="240.7681" cy="345.2969" fill="#191919" rx="8" ry="8" style="stroke:#191919;stroke-width:0.5;"> </ellipse>
+<path d="M240.7681,353.2969 L240.7681,380.2969 M227.7681,361.2969 L253.7681,361.2969 M240.7681,380.2969 L227.7681,395.2969 M240.7681,380.2969 L253.7681,395.2969 " fill="none" style="stroke:#191919;stroke-width:0.5;"> </path>
+<text fill="#191919" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47" x="217.2681" y="409.792">Bruger</text>
+</g>
+<!--entity CSS-->
+<g id="elem_CSS">
+<ellipse cx="86.5181" cy="661.7969" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"> </ellipse>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="72.5181" y="691.792">CSS</text>
+</g>
+<!--entity JavaScript-->
+<g id="elem_JavaScript">
+<ellipse cx="87.5181" cy="921.7969" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"> </ellipse>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="100" x="37.5181" y="951.792">JavaScript/AJAX</text>
+</g>
+<!--entity HTML-->
+<g id="elem_HTML">
+<polygon fill="#F1F1F1" points="47.5181,776.7969,57.5181,766.7969,125.5181,766.7969,125.5181,803.0938,115.5181,813.0938,47.5181,813.0938,47.5181,776.7969" style="stroke:#181818;stroke-width:0.5;"> </polygon>
+<line style="stroke:#181818;stroke-width:0.5;" x1="115.5181" x2="125.5181" y1="776.7969" y2="766.7969"> </line>
+<line style="stroke:#181818;stroke-width:0.5;" x1="47.5181" x2="115.5181" y1="776.7969" y2="776.7969"> </line>
+<line style="stroke:#181818;stroke-width:0.5;" x1="115.5181" x2="115.5181" y1="776.7969" y2="813.0938"> </line>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38" x="62.5181" y="799.792">HTML</text>
+</g>
+<!--entity Feedback JES-->
+<g id="elem_Feedback JES">
+<polygon fill="#F1F1F1" points="215.2681,1145.7969,225.2681,1135.7969,348.2681,1135.7969,348.2681,1172.0938,338.2681,1182.0938,215.2681,1182.0938,215.2681,1145.7969" style="stroke:#181818;stroke-width:0.5;"> </polygon>
+<line style="stroke:#181818;stroke-width:0.5;" x1="338.2681" x2="348.2681" y1="1145.7969" y2="1135.7969"> </line>
+<line style="stroke:#181818;stroke-width:0.5;" x1="215.2681" x2="338.2681" y1="1145.7969" y2="1145.7969"> </line>
+<line style="stroke:#181818;stroke-width:0.5;" x1="338.2681" x2="338.2681" y1="1145.7969" y2="1182.0938"> </line>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="93" x="230.2681" y="1168.792">Feedback JES</text>
+</g>
+<rect fill="#F1F1F1" height="142.0781" rx="3.5" ry="3.5" style="stroke:#181818;stroke-width:0.5;" width="317" x="122.5181" y="1303.2969"> </rect>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="218" x="172.0181" y="1318.292">SAS VA feedback persisterende</text>
+<line style="stroke:#181818;stroke-width:1.0;" x1="255.5181" x2="255.5181" y1="1323.5938" y2="1445.375"> </line>
+<line style="stroke:#181818;stroke-width:1.0;" x1="122.5181" x2="439.5181" y1="1323.5938" y2="1323.5938"> </line>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="76" x="127.5181" y="1338.5889">CAS Library</text>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="135" x="260.5181" y="1338.5889">Navn på CAS Library</text>
+<line style="stroke:#181818;stroke-width:1.0;" x1="122.5181" x2="439.5181" y1="1343.8906" y2="1343.8906"> </line>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="127.5181" y="1358.8857">CAS Table</text>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="125" x="260.5181" y="1358.8857">Navn på CAS table</text>
+<line style="stroke:#181818;stroke-width:1.0;" x1="122.5181" x2="439.5181" y1="1364.1875" y2="1364.1875"> </line>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="64" x="127.5181" y="1379.1826">CAS User</text>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80" x="260.5181" y="1379.1826">Brugernavn</text>
+<line style="stroke:#181818;stroke-width:1.0;" x1="122.5181" x2="439.5181" y1="1384.4844" y2="1384.4844"> </line>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="123" x="127.5181" y="1399.4795">Primary Key Name</text>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="104" x="260.5181" y="1399.4795">Navn på unik id</text>
+<line style="stroke:#181818;stroke-width:1.0;" x1="122.5181" x2="439.5181" y1="1404.7813" y2="1404.7813"> </line>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="38" x="127.5181" y="1419.7764">Value</text>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="155" x="260.5181" y="1419.7764">0/1 som karakterværdi</text>
+<line style="stroke:#181818;stroke-width:1.0;" x1="122.5181" x2="439.5181" y1="1425.0781" y2="1425.0781"> </line>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="127.5181" y="1440.0732">Timestamp</text>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="174" x="260.5181" y="1440.0732">Tidspunkt for registrering</text>
+<rect fill="#F1F1F1" height="60.8906" rx="3.5" ry="3.5" style="stroke:#181818;stroke-width:0.5;" width="277" x="283.5181" y="171.2969"> </rect>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="148" x="348.0181" y="186.292">Nødvendige kolonner</text>
+<line style="stroke:#181818;stroke-width:1.0;" x1="389.5181" x2="389.5181" y1="191.5938" y2="232.1875"> </line>
+<line style="stroke:#181818;stroke-width:1.0;" x1="283.5181" x2="560.5181" y1="191.5938" y2="191.5938"> </line>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="96" x="288.5181" y="206.5889">{primary key}</text>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="143" x="394.5181" y="206.5889">unik og persisterend</text>
+<line style="stroke:#181818;stroke-width:1.0;" x1="283.5181" x2="560.5181" y1="211.8906" y2="211.8906"> </line>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="67" x="288.5181" y="226.8857">_checked</text>
+<text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="161" x="394.5181" y="226.8857">statuskolonne - char(1)</text>
+<!--link SAS Table to ReportTable-->
+<g id="link_SAS Table_ReportTable">
+<path codeline="19" d="M422.5181,88.3269 C422.5181,109.6369 422.5181,142.5569 422.5181,167.2869 " fill="none" id="SAS Table-ReportTable" style="stroke:#191919;stroke-width:1.0;"> </path>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="98" x="423.5181" y="131.8638">ETL fra SAS 9.4</text>
+</g>
+<!--link ReportTable to CAS Table-->
+<g id="link_ReportTable_CAS Table">
+<path codeline="20" d="M422.5181,236.5769 C422.5181,268.8369 422.5181,316.8169 422.5181,346.6569 " fill="none" id="ReportTable-to-CAS Table" style="stroke:#191919;stroke-width:1.0;"> </path>
+<polygon fill="#191919" points="422.5181,352.0069,426.5181,343.0069,422.5181,347.0069,418.5181,343.0069,422.5181,352.0069" style="stroke:#191919;stroke-width:1.0;"> </polygon>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="87" x="423.5181" y="279.8638">Tilføj kolonner</text>
+</g>
+<!--link Bruger to VA Rapport-->
+<g id="link_Bruger_VA Rapport">
+<path codeline="25" d="M240.9111,412.8169 C241.5331,427.7969 242.8451,445.2069 245.5181,460.7969 C246.9381,469.0769 249.1971,477.9169 251.5351,485.9219 " fill="none" id="Bruger-to-VA Rapport" style="stroke:#191919;stroke-width:1.0;"> </path>
+<polygon fill="#191919" points="252.9941,490.7809,254.2355,481.0106,251.5555,485.9923,246.5738,483.3123,252.9941,490.7809" style="stroke:#191919;stroke-width:1.0;"> </polygon>
+</g>
+<!--link VA Rapport to Data Driven Content-->
+<g id="link_VA Rapport_Data Driven Content">
+<path codeline="26" d="M255.0501,536.9709 C247.4481,567.8039 233.9241,622.6499 227.7511,647.6839 " fill="none" id="VA Rapport-to-Data Driven Content" style="stroke:#FF0000;stroke-width:2.0;stroke-dasharray:7.0,7.0;"> </path>
+<polygon fill="#FF0000" points="226.5511,652.5539,232.5897,644.7734,227.7483,647.6993,224.8224,642.8579,226.5511,652.5539" style="stroke:#FF0000;stroke-width:2.0;"> </polygon>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="76" x="248.5181" y="580.3638">Ved bruger-</text>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="68" x="252.5181" y="595.4966">interaktion</text>
+</g>
+<!--link CAS Table to VA Rapport-->
+<g id="link_CAS Table_VA Rapport">
+<path codeline="28" d="M377.2851,395.7169 C336.3781,413.9169 282.0101,438.5969 278.5181,442.7969 C268.5881,454.7469 264.0531,471.5069 262.0171,485.6309 " fill="none" id="CAS Table-to-VA Rapport" style="stroke:#191919;stroke-width:1.0;"> </path>
+<polygon fill="#191919" points="261.3741,490.7029,266.4736,482.277,262.0025,485.7425,258.537,481.2715,261.3741,490.7029" style="stroke:#191919;stroke-width:1.0;"> </polygon>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115" x="279.5181" y="455.8638">Definer kategorier</text>
+</g>
+<!--link CSS to HTML-->
+<g id="link_CSS_HTML">
+<path codeline="35" d="M86.5181,671.0639 C86.5181,689.1039 86.5181,732.6829 86.5181,761.4599 " fill="none" id="CSS-to-HTML" style="stroke:#191919;stroke-width:1.0;"> </path>
+<polygon fill="#191919" points="86.5181,766.6509,90.5181,757.6509,86.5181,761.6509,82.5181,757.6509,86.5181,766.6509" style="stroke:#191919;stroke-width:1.0;"> </polygon>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="43" x="87.5181" y="723.8638">Layout</text>
+</g>
+<!--link HTML to JavaScript-->
+<g id="link_HTML_JavaScript">
+<path codeline="36" d="M86.7263,817.8569 C86.937,845.2589 87.2543,886.5009 87.4158,907.4949 " fill="none" id="HTML-JavaScript" style="stroke:#191919;stroke-width:1.0;"> </path>
+<polygon fill="#191919" points="86.6877,812.8499,82.7572,821.8805,86.7263,817.8497,90.757,821.8188,86.6877,812.8499" style="stroke:#191919;stroke-width:1.0;"> </polygon>
+<polygon fill="#191919" points="87.4552,912.6139,91.3857,903.5833,87.4166,907.614,83.3859,903.645,87.4552,912.6139" style="stroke:#191919;stroke-width:1.0;"> </polygon>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="68" x="88.5181" y="855.8638">Interaktion</text>
+</g>
+<!--link Data Driven Content to HTML-->
+<g id="link_Data Driven Content_HTML">
+<path codeline="46" d="M215.4631,671.0639 C195.2961,689.4779 145.9841,734.5019 114.5191,763.2309 " fill="none" id="Data Driven Content-to-HTML" style="stroke:#191919;stroke-width:1.0;"> </path>
+<polygon fill="#191919" points="110.7731,766.6509,120.1167,763.5368,114.4657,763.2797,114.7228,757.6287,110.7731,766.6509" style="stroke:#191919;stroke-width:1.0;"> </polygon>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="114" x="181.5181" y="716.3638">Data sendes med</text>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="95" x="191.0181" y="731.4966">messageEvent</text>
+</g>
+<!--link JavaScript to Feedback JES-->
+<g id="link_JavaScript_Feedback JES">
+<path codeline="47" d="M94.196,930.8859 C120.3651,962.5859 216.6191,1079.1829 260.0311,1131.7689 " fill="none" id="JavaScript-to-Feedback JES" style="stroke:#FF0000;stroke-width:2.0;stroke-dasharray:7.0,7.0;"> </path>
+<polygon fill="#FF0000" points="263.3141,1135.7459,260.6694,1126.2588,260.1311,1131.8899,254.4999,1131.3516,263.3141,1135.7459" style="stroke:#FF0000;stroke-width:2.0;"> </polygon>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82" x="162.5181" y="996.3638">Ved ændring</text>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="63" x="172.0181" y="1011.4966">fra bruger</text>
+</g>
+<!--reverse link CAS Table to Feedback JES-->
+<g id="link_CAS Table_Feedback JES">
+<path codeline="48" d="M422.5181,402.9269 C422.5181,430.5669 422.5181,474.6669 422.5181,512.7969 C422.5181,512.7969 422.5181,512.7969 422.5181,921.7969 C422.5181,1011.5249 346.4761,1096.7419 306.0781,1135.6819 " fill="none" id="CAS Table-backto-Feedback JES" style="stroke:#008000;stroke-width:2.0;"> </path>
+<polygon fill="#008000" points="422.5181,397.6269,418.5181,406.6269,422.5181,402.6269,426.5181,406.6269,422.5181,397.6269" style="stroke:#008000;stroke-width:2.0;"> </polygon>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="71" x="443.5181" y="716.3638">Opdatering</text>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="111" x="423.5181" y="731.4966">hvis MSSQL er ok</text>
+</g>
+<!--link Feedback JES to SAS_VA_Feedback_PersistetStorage-->
+<g id="link_Feedback JES_SAS_VA_Feedback_PersistetStorage">
+<path codeline="59" d="M281.5181,1181.8929 C281.5181,1208.1589 281.5181,1253.4749 281.5181,1293.4769 " fill="none" id="Feedback JES-to-SAS_VA_Feedback_PersistetStorage" style="stroke:#008000;stroke-width:2.0;"> </path>
+<polygon fill="#008000" points="281.5181,1298.8299,285.5181,1289.8299,281.5181,1293.8299,277.5181,1289.8299,281.5181,1298.8299" style="stroke:#008000;stroke-width:2.0;"> </polygon>
+<text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="282.5181" y="1226.8638">Indsættes</text>
+</g>
+<!--SRC=[ZLJRRjD047tVhnYMbo8bAKMy49LAfYsNa0QeGuJKecfZJvp5zgwrkquRLVqS-WrzpuynktKQfrI2DtldpEtCcN7I5GYHoQN3tDM6FNDpB15AOImJHQ4lItabLSRshLiMUC26cA5AuPgz4qcU6Lshz50NslH1QOKTDfGAntEPv0gjxSFBwgh3tclb6j078vRiXktlDk5IuSHKM0GUHp6CnRH0Ji5lMeR3RSClgnNmqUekNL0XCaF8ARHIQ3W82wTOQUC2dk3ykZAIUbb2ZiiRtkUraZde32eqLbg7XcBm3kCNoHoJ75E2M2TSRPkWq8LaBipEtWjEkTj5TetCvgwxbR0Fn-CXp8m03tpJUytQriRZOAkbFenbCLlT_NfeWrN4hCWQIYRIrgA0I8bYwMHYFGc9BYiYMpdWamXEHULpSBRp0lWHqGP7HX8tS4Yq4uWpaJXjWBypTKOiiVK7-5BQ0Te_q3jxRZ3jkFKitxxw6Uhl7JoTXJhX4qnX6e9tpvMaToDo9xKAtBMQxgRwKZtAJlv7E2Fr6CY5mqmRILnOTA14YPP8mHWhOOJlnMkD9OMkK-0pn7HAbFNchYmyFKgd21_79yEW5sBbC8u3EGEn475YPELseq7q8-XbyyO8jfbHyE_3K2nrxLZusr-NlV4XnATDcvHjQtO3FONZAqngRuGOpSAptXJ8tpTrm-0ulfTs4NQBaMitzv2Iw1JAonmBsWGnOuFuomWAEVMKU1dxB0-yGfGqYPpjCV9guX7tJmvitKxJQi1OdypwpEUAMBVKop4vETRg-GbbU55izzEeONMhKaFturpvhPYk5RYDxPuzpmoYsWfPLtzj2lzIqLd0-tZpXRHm4iVVXa2IqJbldOmJcHXjzSo1Ds-8lxyTOQqYMEjcwnPW40KXBYRHnRhAYwyDmiKaFZ_Uwtiv3-NKq76Xep4I2mNLwZUqdpjjqJ_2kF3O8BvRgg_VxAKYc3TyRIxNPrp2YERTZX3Ec0oNQoAAsjjUxkw1rIKjZrSZjRowDQdqYB6aIJfHLfme7ClKLhNA7SneZmncr9S9bFeblVclqJpSiN_n58RsIQLsTUiSMlu7]-->
+</g>
+</svg>

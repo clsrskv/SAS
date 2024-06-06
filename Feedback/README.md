@@ -2,15 +2,15 @@
 
 Eksempel på feedback med Data Drive Content i SAS Visual Analytics med beskrivelse af, hvordan det kan anvendes i rapportering.
 
-* [Anvendelse](#user-content-anvendelse)
-* [Design](#user-content-design)
-* [Kode](#user-content-kode)
-  * [Rapporteksempel](#user-content-rapporteksempel)
-  * [Data til eksempel](#user-content-data-til-eksempel)
-  * [HTML og JavaScript](#user-content-html-og-javascript)
-  * [Job Execution Server](#user-content-job-execution-server)
-  * [Microsoft SQL Server](#user-content-microsoft-sql-server)
-* [Forbedringspotentialer](#user-content-forbedringspotentialer)
+* [Anvendelse](#anvendelse)
+* [Design](#design)
+* [Kode](#kode)
+  * [Rapporteksempel](#rapporteksempel)
+  * [Data til eksempel](#data-til-eksempel)
+  * [HTML og JavaScript](#html-og-javascript)
+  * [Job Execution Server](#job-execution-server)
+  * [Microsoft SQL Server](#microsoft-sql-server)
+* [Forbedringspotentialer](#forbedringspotentialer)
 
 # Anvendelse
 

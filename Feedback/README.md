@@ -63,7 +63,5 @@ DDC -> User : GUI Status
 end
 @enduml
 -->
-Feedback/assets/images/Interaktion_og_kommunikation.svg
-![/Interaktion_og_kommunikation.svg](Feedback/assets/images/Interaktion_og_kommunikation.svg)
-<img src="Feedback/assets/images/Interaktion_og_kommunikation.svg">
-
+![Interaktion og kommunikation](./assets/images/Interaktion_og_kommunikation.svg)
+<img src="./assets/images/Interaktion_og_kommunikation.svg">

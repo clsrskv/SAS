@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"  standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" height="898px" viewBox="0 0 643 898" width="643px">
+<defs>
+<linearGradient id="g17hae8amgfp050" x1="50%" x2="50%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#999890"> </stop>
+<stop offset="100%" stop-color="#8E8C84"> </stop>
+</linearGradient>
+</defs>
+<g>
+<rect fill="url(#g17hae8amgfp050)" height="47.168" id="_title" rx="4.1667" ry="4.1667" style="stroke:#807E77;stroke-width:1.0416666666666667;" width="176.0417" x="232.2917" y="20.8333"> </rect>
+<text fill="#325D88" font-family="Verdana" font-size="20.8333" font-weight="bold" lengthAdjust="spacing" textLength="153.125" x="243.75" y="51.6296">JobExecution</text>
+<rect fill="#FFC0CB" height="52.0182" rx="4.1667" ry="4.1667" style="stroke:#2D547A;stroke-width:1.0416666666666667;" width="176.0417" x="232.8125" y="80.5013"> </rect>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="153.125" x="244.2708" y="103.5624">Forespørgsel modtaget</text>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="88.5417" x="244.2708" y="118.1132">fra webserver</text>
+<ellipse cx="320.8333" cy="163.7695" fill="#29ABE0" rx="10.4167" ry="10.4167" style="stroke:#2D547A;stroke-width:1.0416666666666667;"> </ellipse>
+<rect fill="#325D88" height="52.0182" rx="4.1667" ry="4.1667" style="stroke:#2D547A;stroke-width:1.0416666666666667;" width="161.4583" x="417.1875" y="220.0195"> </rect>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="138.5417" x="428.6458" y="243.0806">No parameters send.</text>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="93.75" x="428.6458" y="257.6314">Nothing done!</text>
+<rect fill="#325D88" height="66.569" rx="4.1667" ry="4.1667" style="stroke:#2D547A;stroke-width:1.0416666666666667;" width="210.4167" x="392.7083" y="332.3893"> </rect>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="156.25" x="404.1667" y="355.4504">CAS Library [&amp;caslib.] or</text>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="187.5" x="404.1667" y="370.0012">CAS table [&amp;caslib..&amp;castbl.]</text>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="67.7083" x="404.1667" y="384.552">not found.</text>
+<rect fill="#325D88" height="81.1198" rx="4.1667" ry="4.1667" style="stroke:#2D547A;stroke-width:1.0416666666666667;" width="245.8333" x="375" y="444.7917"> </rect>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="211.4583" x="386.4583" y="467.8528">Check column [&amp;check_column.]</text>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="147.9167" x="386.4583" y="482.4036">not found in CAS Table</text>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="125" x="386.4583" y="496.9543">[&amp;caslib..&amp;castbl.].</text>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="222.9167" x="386.4583" y="511.5051">Available columns are &amp;colnames.</text>
+<rect fill="#325D88" height="81.1198" rx="4.1667" ry="4.1667" style="stroke:#2D547A;stroke-width:1.0416666666666667;" width="209.375" x="393.2292" y="571.7448"> </rect>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="177.0833" x="404.6875" y="594.8059">Column [%trim(&amp;__pk_col.)]</text>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="145.8333" x="404.6875" y="609.3567">not found in CAS table</text>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="186.4583" x="404.6875" y="623.9075">[&amp;caslib..&amp;castbl.]. Available</text>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="161.4583" x="404.6875" y="638.4583">columns are &amp;colnames.</text>
+<polygon fill="#999890" points="55.2083,195.0195,169.7917,195.0195,182.2917,207.5195,169.7917,220.0195,55.2083,220.0195,42.7083,207.5195,55.2083,195.0195" style="stroke:#807E77;stroke-width:1.0416666666666667;"> </polygon>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="104.1667" x="60.4167" y="211.8469">Er _params sat?</text>
+<text fill="#FF0000" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="20.8333" x="187.5" y="199.3632">Nej</text>
+<polygon fill="#999890" points="33.3333,292.8711,191.6667,292.8711,204.1667,312.6302,191.6667,332.3893,33.3333,332.3893,20.8333,312.6302,33.3333,292.8711" style="stroke:#807E77;stroke-width:1.0416666666666667;"> </polygon>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="147.9167" x="38.5417" y="309.6822">Eksisterer CAS Library?</text>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="140.625" x="38.5417" y="324.233">Eksisterer CAS Table?</text>
+<text fill="#FF0000" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="20.8333" x="209.375" y="304.4739">Nej</text>
+<polygon fill="#999890" points="43.2292,419.7917,181.7708,419.7917,194.2708,432.2917,181.7708,444.7917,43.2292,444.7917,30.7292,432.2917,43.2292,419.7917" style="stroke:#807E77;stroke-width:1.0416666666666667;"> </polygon>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="128.125" x="48.4375" y="436.6191">Eksisterer kolonne?</text>
+<text fill="#FF0000" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="20.8333" x="199.4792" y="424.1353">Nej</text>
+<polygon fill="#999890" points="43.2292,546.7448,181.7708,546.7448,194.2708,559.2448,181.7708,571.7448,43.2292,571.7448,30.7292,559.2448,43.2292,546.7448" style="stroke:#807E77;stroke-width:1.0416666666666667;"> </polygon>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="128.125" x="48.4375" y="563.5722">Eksisterer kolonne?</text>
+<text fill="#FF0000" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="20.8333" x="199.4792" y="551.0885">Nej</text>
+<rect fill="#325D88" height="52.0182" rx="4.1667" ry="4.1667" style="stroke:#2D547A;stroke-width:1.0416666666666667;" width="158.3333" x="241.6667" y="673.6979"> </rect>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="101.0417" x="253.125" y="696.759">Tilføj resultat af</text>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="135.4167" x="253.125" y="711.3098">opdatering til output</text>
+<polygon fill="#999890" points="320.8333,746.5495,333.3333,759.0495,320.8333,771.5495,308.3333,759.0495,320.8333,746.5495" style="stroke:#807E77;stroke-width:1.0416666666666667;"> </polygon>
+<rect fill="#98FB98" height="52.0182" rx="4.1667" ry="4.1667" style="stroke:#2D547A;stroke-width:1.0416666666666667;" width="154.1667" x="243.75" y="792.3828"> </rect>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="81.25" x="255.2083" y="815.4439">Send output</text>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="131.25" x="255.2083" y="829.9947">tilbage til webserver</text>
+<ellipse cx="320.8333" cy="876.6927" fill="none" rx="11.4583" ry="11.4583" style="stroke:#2D547A;stroke-width:1.0416666666666667;"> </ellipse>
+<ellipse cx="320.8333" cy="876.6927" fill="#2D547A" rx="6.25" ry="6.25" style="stroke:#162A3D;stroke-width:1.0416666666666667;"> </ellipse>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="320.8333" x2="320.8333" y1="132.5195" y2="153.3529"> </line>
+<polygon fill="#325D88" points="316.6667,142.9362,320.8333,153.3529,325,142.9362,320.8333,147.1029" style="stroke:#325D88;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#FF0000;stroke-width:3.125;" x1="182.2917" x2="497.9167" y1="207.5195" y2="207.5195"> </line>
+<line style="stroke:#FF0000;stroke-width:3.125;" x1="497.9167" x2="497.9167" y1="207.5195" y2="220.0195"> </line>
+<polygon fill="#FF0000" points="493.75,209.6029,497.9167,220.0195,502.0833,209.6029,497.9167,213.7695" style="stroke:#FF0000;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#FF0000;stroke-width:3.125;" x1="204.1667" x2="497.9167" y1="312.6302" y2="312.6302"> </line>
+<line style="stroke:#FF0000;stroke-width:3.125;" x1="497.9167" x2="497.9167" y1="312.6302" y2="332.3893"> </line>
+<polygon fill="#FF0000" points="493.75,321.9727,497.9167,332.3893,502.0833,321.9727,497.9167,326.1393" style="stroke:#FF0000;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#FF0000;stroke-width:3.125;" x1="194.2708" x2="497.9167" y1="432.2917" y2="432.2917"> </line>
+<line style="stroke:#FF0000;stroke-width:3.125;" x1="497.9167" x2="497.9167" y1="432.2917" y2="444.7917"> </line>
+<polygon fill="#FF0000" points="493.75,434.375,497.9167,444.7917,502.0833,434.375,497.9167,438.5417" style="stroke:#FF0000;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#FF0000;stroke-width:3.125;" x1="194.2708" x2="497.9167" y1="559.2448" y2="559.2448"> </line>
+<line style="stroke:#FF0000;stroke-width:3.125;" x1="497.9167" x2="497.9167" y1="559.2448" y2="571.7448"> </line>
+<polygon fill="#FF0000" points="493.75,561.3281,497.9167,571.7448,502.0833,561.3281,497.9167,565.4948" style="stroke:#FF0000;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="112.5" x2="112.5" y1="220.0195" y2="292.8711"> </line>
+<polygon fill="#325D88" points="108.3333,282.4544,112.5,292.8711,116.6667,282.4544,112.5,286.6211" style="stroke:#325D88;stroke-width:1.0416666666666667;"> </polygon>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="160.4167" x="117.7083" y="255.5644">Hent parametre fra JSON</text>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="112.5" x2="112.5" y1="332.3893" y2="419.7917"> </line>
+<polygon fill="#325D88" points="108.3333,409.375,112.5,419.7917,116.6667,409.375,112.5,413.5417" style="stroke:#325D88;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="112.5" x2="112.5" y1="444.7917" y2="546.7448"> </line>
+<polygon fill="#325D88" points="108.3333,536.3281,112.5,546.7448,116.6667,536.3281,112.5,540.4948" style="stroke:#325D88;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="497.9167" x2="497.9167" y1="272.0378" y2="287.6628"> </line>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="497.9167" x2="620.8333" y1="287.6628" y2="287.6628"> </line>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="620.8333" x2="620.8333" y1="287.6628" y2="759.0495"> </line>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="620.8333" x2="333.3333" y1="759.0495" y2="759.0495"> </line>
+<polygon fill="#325D88" points="343.75,754.8828,333.3333,759.0495,343.75,763.2161,339.5833,759.0495" style="stroke:#325D88;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="497.9167" x2="497.9167" y1="398.9583" y2="414.5833"> </line>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="497.9167" x2="620.8333" y1="414.5833" y2="414.5833"> </line>
+<polygon fill="#325D88" points="610.4167,410.4167,620.8333,414.5833,610.4167,418.75,614.5833,414.5833" style="stroke:#325D88;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="497.9167" x2="497.9167" y1="525.9115" y2="541.5365"> </line>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="497.9167" x2="620.8333" y1="541.5365" y2="541.5365"> </line>
+<polygon fill="#325D88" points="610.4167,537.3698,620.8333,541.5365,610.4167,545.7031,614.5833,541.5365" style="stroke:#325D88;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="497.9167" x2="497.9167" y1="652.8646" y2="668.4896"> </line>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="497.9167" x2="620.8333" y1="668.4896" y2="668.4896"> </line>
+<polygon fill="#325D88" points="610.4167,664.3229,620.8333,668.4896,610.4167,672.6563,614.5833,668.4896" style="stroke:#325D88;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="320.8333" x2="320.8333" y1="174.1862" y2="179.3945"> </line>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="320.8333" x2="112.5" y1="179.3945" y2="179.3945"> </line>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="112.5" x2="112.5" y1="179.3945" y2="195.0195"> </line>
+<polygon fill="#325D88" points="108.3333,184.6029,112.5,195.0195,116.6667,184.6029,112.5,188.7695" style="stroke:#325D88;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="112.5" x2="112.5" y1="571.7448" y2="658.0729"> </line>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="112.5" x2="320.8333" y1="658.0729" y2="658.0729"> </line>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="320.8333" x2="320.8333" y1="658.0729" y2="673.6979"> </line>
+<polygon fill="#325D88" points="316.6667,663.2813,320.8333,673.6979,325,663.2813,320.8333,667.4479" style="stroke:#325D88;stroke-width:1.0416666666666667;"> </polygon>
+<text fill="#FFFFFF" font-family="Verdana" font-size="12.5" lengthAdjust="spacing" textLength="97.9167" x="117.7083" y="621.8404">Opdater række</text>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="320.8333" x2="320.8333" y1="725.7161" y2="730.9245"> </line>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="320.8333" x2="320.8333" y1="730.9245" y2="746.5495"> </line>
+<polygon fill="#325D88" points="316.6667,736.1328,320.8333,746.5495,325,736.1328,320.8333,740.2995" style="stroke:#325D88;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="320.8333" x2="320.8333" y1="771.5495" y2="792.3828"> </line>
+<polygon fill="#325D88" points="316.6667,781.9661,320.8333,792.3828,325,781.9661,320.8333,786.1328" style="stroke:#325D88;stroke-width:1.0416666666666667;"> </polygon>
+<line style="stroke:#325D88;stroke-width:3.125;" x1="320.8333" x2="320.8333" y1="844.401" y2="865.2344"> </line>
+<polygon fill="#325D88" points="316.6667,854.8177,320.8333,865.2344,325,854.8177,320.8333,858.9844" style="stroke:#325D88;stroke-width:1.0416666666666667;"> </polygon>
+</g>
+</svg>

@@ -224,6 +224,7 @@ Sti til SAS Visual Analytics: https://_{hostnavn}_/SASVisualAnalytics/
 
 I rapporten anvendes kopi af meldingsdata, som kan dannes med flg. kode, hvis den ikke er i CAS:
 
+### Kode til dannelse af PoC-tabel
 ```
 libname y cas caslib="Projekt";
 proc casutil incaslib="Projekt" outcaslib="Projekt";
@@ -270,6 +271,7 @@ Her anvendes SAS-kode til at opdatere _checked-kolonnen i CAS-tabellen og return
 
 En række i et table i CAS kan opdateres med følgende kode, hvor der anvendes CAS Tables Action Set:
 
+### Opdatering af række i CAS-tabel
 ```
 cas casauto;
 proc cas;
@@ -329,6 +331,7 @@ Forbindelsen til Microsoft SQL Server er på SAS 9.4 defineret i odbc.ini-fil, s
 
 På Microsoft SQL Server lagres data fra feedback i tabellen [Viya_{servermiljø}_db].[dbo].[Feedback], hvor servermiljø er enten int01 for produktion eller exp01 for udvikling. Tabellen er defineret med følgende SQL-kode:
 
+### Oprettelse< af tabel
 ```
 USE [_{schema}_]
 GO
@@ -362,6 +365,7 @@ Der er defineret et indeks, som optimerer forespørgselstiden i forhold til data
 
 Eksempel på indsætning af data kan se således ud:
 
+### Indsætning af data
 ```
 USE [_{schema}_]
 GO
@@ -389,6 +393,7 @@ På SAS Viya er data source ligeledes defineret i /etc/odbc.ini og hedder også 
 
 Med SAS-kode, kan det se således ud:
 
+### SAS - Indsætning af data med SQL Pass-Through
 ```
 OPTIONS SET=EASYSOFT_UNICODE=YES;
 
@@ -428,6 +433,7 @@ DISCONNECT FROM test;
 quit;
 ```
 
+### SAS Indsætning af data med SAS SQL
 ```
 OPTIONS SET=EASYSOFT_UNICODE=YES;
 
@@ -459,3 +465,16 @@ quit;
 ```
 
 # Forbedringspotentialer
+Parametre kontrolleres i JavaScript i feedback.html. Det kan dog være hensigtsmæssigt at indsætte samme validering i SAS-koden i Feedback på Job Execution Server. Den aktuelle implementering har som nu ikke fuld fejlhåndtering jf. unit testing.
+
+Der kan være et potentiale i at parametrisere tabelkolonnen _checked via kategorier i SAS Visual Analytics på samme måde som anvendes til at angive kolonnenavnet på primærnøglen.
+
+Med anvendelse af Job Execution Server får brugeren samtidig adgang til SAS StudioV. Teknisk set er det derfor muligt for brugeren at anvende de adgange, som er nødvendige for at afvikle scriptet, til at tilgå de samme ressourcer. Aktuel implementering åbner adgang for brugerne til at manipulere data i hele CAS-tabellen. Det kan ikke kompromittere data på SAS 9.4 og vil i det hypotetiske tilfælde, at det sker, blive overskrevet ved næste opdatering af data. Det vil dog temporært kunne ændre visningen af data. Det kræver ud over onde intentioner indsigt i SAS Viya at kunne foretage disse ændringer, som desuden vil være logget under den pågældende bruger. En anden tilgang kunne være at etablere registreringen af status i en parallel CAS-tabel, som så flettes på data direkte i listevisningen i SAS Visual Analytics. Det vil implementeringsmæssigt for den enkelte rapportbygger være væsentligt noget mere komplekst at sætte op for den enkelte rapport. Der vil desuden skulle laves ændringer af SAS-koden på Job Execution Server. Herved kan adgangen til data begrænses til tabellem med statuskolonnen. Metoden er ikke afprøvet i praksis.
+
+Aktuel opsætning af forbindelse til Microsoft SQL Server er baseret på fast bruger. Et stærkere princip ville være, at brugerens credentials anvendes op mod SQL-serveren, da integriteten i logning her kan opretholdes med specifikation af den enkelte brugers handling på databasen.
+
+_Den aktuelle anvendelse i hosstående eksempel indeholder ikke registrering af kritiske forretningsbeslutninger eller personhenførbare data. De ovenfor behandlede sikkerhedsbetragtninger ses derfor ikke som problematiske for implementeringen. Der skal dog tages forbehold for anvendelse med andre typer af informationer, hvor der igen må tages stilling til, om denne løsningsmodel anses for forsvarlig._
+
+Opsætning af forbindelse fra SAS Viya til Microsoft SQL Server kan gøres med SAS/Access to Impala, hvorved adgangen er defineret fast. Se mere under [SAS Help Center: Configure Data Access|https://go.documentation.sas.com/doc/en/calcdc/3.5/dplyml0phy0lax/p03m8khzllmphsn17iubdbx6fjpq.htm#n123vsq7n1hh3vn1a17lsdpa90pq].
+
+Ved opgradering til SAS Viya 4 vil der være adgang til libname option DM_UNICODE=, hvor UTF-8 kan sættes direkte på libname statement i stedet for generelt med option SET=EASYSOFT_UNICODE=YES. Se mere under SAS Help Center: [DM_UNICODE=|https://go.documentation.sas.com/doc/en/pgmsascdc/v_048/acreldb/p0ykl8zhh1w4wcn1e3gdip1lw8qz.htm].

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" height="1483px" viewBox="0 0 567 1483" width="567px>
+<svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" height="1483px" viewBox="0 0 567 1483" width="567px">
+<defs> </defs>
 <g>
 <rect fill="#F9F9F9" height="1483" style="stroke:none;stroke-width:1.0;" width="567" x="0" y="0"> </rect>
 <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="79" x="237.259" y="22.9951">Arkitektur</text>
@@ -187,6 +188,5 @@
 <polygon fill="#008000" points="281.5181,1298.8299,285.5181,1289.8299,281.5181,1293.8299,277.5181,1289.8299,281.5181,1298.8299" style="stroke:#008000;stroke-width:2.0;"> </polygon>
 <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="282.5181" y="1226.8638">Indsættes</text>
 </g>
-<!--SRC=[ZLJRRjD047tVhnYMbo8bAKMy49LAfYsNa0QeGuJKecfZJvp5zgwrkquRLVqS-WrzpuynktKQfrI2DtldpEtCcN7I5GYHoQN3tDM6FNDpB15AOImJHQ4lItabLSRshLiMUC26cA5AuPgz4qcU6Lshz50NslH1QOKTDfGAntEPv0gjxSFBwgh3tclb6j078vRiXktlDk5IuSHKM0GUHp6CnRH0Ji5lMeR3RSClgnNmqUekNL0XCaF8ARHIQ3W82wTOQUC2dk3ykZAIUbb2ZiiRtkUraZde32eqLbg7XcBm3kCNoHoJ75E2M2TSRPkWq8LaBipEtWjEkTj5TetCvgwxbR0Fn-CXp8m03tpJUytQriRZOAkbFenbCLlT_NfeWrN4hCWQIYRIrgA0I8bYwMHYFGc9BYiYMpdWamXEHULpSBRp0lWHqGP7HX8tS4Yq4uWpaJXjWBypTKOiiVK7-5BQ0Te_q3jxRZ3jkFKitxxw6Uhl7JoTXJhX4qnX6e9tpvMaToDo9xKAtBMQxgRwKZtAJlv7E2Fr6CY5mqmRILnOTA14YPP8mHWhOOJlnMkD9OMkK-0pn7HAbFNchYmyFKgd21_79yEW5sBbC8u3EGEn475YPELseq7q8-XbyyO8jfbHyE_3K2nrxLZusr-NlV4XnATDcvHjQtO3FONZAqngRuGOpSAptXJ8tpTrm-0ulfTs4NQBaMitzv2Iw1JAonmBsWGnOuFuomWAEVMKU1dxB0-yGfGqYPpjCV9guX7tJmvitKxJQi1OdypwpEUAMBVKop4vETRg-GbbU55izzEeONMhKaFturpvhPYk5RYDxPuzpmoYsWfPLtzj2lzIqLd0-tZpXRHm4iVVXa2IqJbldOmJcHXjzSo1Ds-8lxyTOQqYMEjcwnPW40KXBYRHnRhAYwyDmiKaFZ_Uwtiv3-NKq76Xep4I2mNLwZUqdpjjqJ_2kF3O8BvRgg_VxAKYc3TyRIxNPrp2YERTZX3Ec0oNQoAAsjjUxkw1rIKjZrSZjRowDQdqYB6aIJfHLfme7ClKLhNA7SneZmncr9S9bFeblVclqJpSiN_n58RsIQLsTUiSMlu7]-->
 </g>
 </svg>

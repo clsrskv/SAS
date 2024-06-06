@@ -238,7 +238,224 @@ ID_kolonne = _n_;
 run;
 ```
 
+Her er tilføjet en kolonne til at gemme brugerens indtastning.
+
 ## HTML og JavaScript
+
+Sti: /opt/sas/viya/home/var/www/html/htmlcommons
+
+Filnavn: feedback_PoC.html
+
+Sti til fil på webserveren: https://_{hostnavn}_/htmlcommons/test/feedback_PoC.html
+
+Denne fil er som udgangspunkt en HTML-fil. Den indeholder desuden opsætning med CSS samt JavaScript til at håndtere interaktionen med brugeren såvel som Job Execution Server.
+
+Scriptet er baseret på funktionalitet i Data Driven Content (DDC) i SAS Visual Analytics. Her sendes data til DDC via JavaScript med en message event, som sendes, når brugeren klikker på en række i listetabellen. I scriptet defineres en event listener, som aktiverer en funktion, når data modtages. Funktionen danner nye HTML-elementer til siden, som viser inputboksen og evt. yderligere data, hvis disse er defineret på DDC'en.
+
+Inputboksen dannes med en change event. Når brugeren klikker på inputboksen, aktiveres en funktion der sender data til SAS Job Execution Server. Data er formet som JSON og angives i URL'en, og forespørgslen sendes som en XHR request med en HTTP GET metode. Overordnet betegnes denne tilgang typisk som AJAX.
+
+Resultatet af forespørgslen returneres ligeledes fra webserveren via HTTP. Her håndterer scriptet evt. fejl i kommunikationen og returnerer det i HTML-siden i statusområdet nederst. Såfremt der opstår fejl på serversiden i forbindelse med opdateringen af data, bliver dette håndteret i SAS-koden og returneret til scriptet med data formateret i JSON-format. Dette angives ligeledes i statusfeltet.
+
+Der dannes desuden løbende beskeder i konsollen i browserens debugger. Debuggeren åbnes ved at trykke på F12. Herefter vælges fanebladet Console. Hvis der opstår fejl ved anvendelse af feedback-scriptet er det hensigtsmæssigt at orientere sig i, hvad der er skrevet i konsollen ligesom, at det kan være en hjælp at se på kommunikationen i fanebladet Network.
+
 ## Job Execution Server
+
+Placering på SAS Viya: /SAS Indhold/Projects
+
+Navn: feedback_PoC (type: Job definition)
+
+Stil til Job Execution Server: https://fst-viya-exp01u.prod.sitad.dk/SASJobExecution
+
+Her anvendes SAS-kode til at opdatere _checked-kolonnen i CAS-tabellen og returnere svar til SAS VA.
+
+En række i et table i CAS kan opdateres med følgende kode, hvor der anvendes CAS Tables Action Set:
+
+```
+cas casauto;
+proc cas;
+   session casauto;
+   table.update /
+     set={
+     { var="_checked", value="1" }
+     },
+   table = {
+     caslib = "EJER",
+     name = "B339389_test",
+     where = "XX_MELDINGS_ID eq 718284" }
+;
+quit;
+```
+
+Job Execution Server modtager brugerens input sendt fra browseren med JavaScript via webserveren. Herefter eksekverer den SAS-koden.
+
+SAS-koden er wrappet med en makro for at kunne anvende [SAS %GOTO Macro Statement](https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/mcrolref/p0jfeh75p72icen1ddd9una5zbmm.htm) til at lave fejlhåndtering. Koden tjekker for om parametre ser sendt, om CAS Library og CAS Table eksisterer, og om kolonnen defineret i parametrene findes. Hvis ikke defineres fejlbesked, og der sendes output i JSON-format tilbage til webserveren.
+
+<!--
+@startuml
+!theme sandstone
+!pragma useVerticalIf on
+#pink:Forespørgsel modtaget\nfra webserver;
+start
+if (Er _params sat?) then (<color:red>Nej)
+  -[#red]->
+  :No parameters send.\nNothing done!;
+(Hent parametre fra JSON) elseif (Eksisterer CAS Library?\nEksisterer CAS Table?) then (<color:red>Nej)
+  -[#red]->
+  :CAS Library [&caslib.] or\nCAS table [&caslib..&castbl.]\nnot found.;
+elseif (Eksisterer kolonne?) then (<color:red>Nej)
+  -[#red]->
+  :Check column [&check_column.]\nnot found in CAS Table\n[&caslib..&castbl.].\nAvailable columns are &colnames.;
+elseif (Eksisterer kolonne?) then (<color:red>Nej)
+  -[#red]->
+  :Column [%trim(&__pk_col.)]\nnot found in CAS table\n[&caslib..&castbl.]. Available\ncolumns are &colnames.;
+else (Opdater række)
+  :Tilføj resultat af\nopdatering til output;
+endif
+#palegreen:Send output\ntilbage til webserver;
+stop
+@enduml
+-->
+![JobExecution](./assets/images/JobExecution.svg)
+
+Hvis opdateringen foretages, samles statusbeskeder mv. og sendes ligeledes retur til webserveren i JSON-format. Webserveren returnerer så svaret til browseren, hvor JavaScriptet viser status for opdateringen.
+
 ## Microsoft SQL Server
+
+Adgangen til data på SQL-serveren i SAS Data Integration Studio foregår via SAS Library "_{library navn}_" med libref _{libref}_. Biblioteket er opsat uden preassignment og skal derfor udenfor SAS Data Integration Studio allokeres med:
+
+LIBNAME SQL_Viya SQLSVR  Datasrc=_{datasrc}_  SCHEMA=dbo authdomain='_{authdomain}_';
+
+Forbindelsen til Microsoft SQL Server er på SAS 9.4 defineret i odbc.ini-fil, som ligger i filsystemet på Linux. Her er data source SQL_Viya_db defineret. Authentication domain SAS_Viya_db_auth er opsat i SAS Management Console, og bruge er opsat i brugergruppen SQLSERVER brugere med brugernavnene Viya_Feedback_exp01u hhv. Viya_Feedback_int01p for det respektive miljø. Brugerne har fuld adgang til tabellen på Microsoft SQL Server.
+
+På Microsoft SQL Server lagres data fra feedback i tabellen [Viya_{servermiljø}_db].[dbo].[Feedback], hvor servermiljø er enten int01 for produktion eller exp01 for udvikling. Tabellen er defineret med følgende SQL-kode:
+
+```
+USE [_{schema}_]
+GO
+CREATE TABLE
+    [dbo].[Feedback]
+(
+    [ID] INT not null IDENTITY PRIMARY KEY,
+    [Username] CHAR(8) not null,
+    [CASLibrary] CHAR(8) not null,
+    [CASTable] VARCHAR(32) not null,
+    [PrimaryKey] VARCHAR(32) not null,
+    [Status] BIT not null,
+    [feedback_dttm] DATETIME2(3) not null,
+    [insert_dttm] DATETIME not null default CURRENT_TIMESTAMP
+)
+;
+GO
+CREATE INDEX
+    [id_org_row]
+ON
+    [dbo].[Feedback]
+(
+    [CASLibrary],
+    [CASTable],
+    [PrimaryKey]
+)
+GO
+```
+
+Der er defineret et indeks, som optimerer forespørgselstiden i forhold til data, der skal hentes til SAS 9.4.
+
+Eksempel på indsætning af data kan se således ud:
+
+```
+USE [_{schema}_]
+GO
+INSERT INTO
+    [dbo].[Feedback]
+(
+    [Username],
+    [CASLibrary],
+    [CASTable],
+    [PrimaryKey],
+    [Status],
+    [feedback_dttm]
+) VALUES (
+    'B339389',
+    'MyCASLib',
+    'MyCASTable',
+    '1234',
+    1,
+    '2004-05-23T14:25:10.487'
+)
+GO
+```
+
+På SAS Viya er data source ligeledes defineret i /etc/odbc.ini og hedder også her SQL_Viya_db. Authentication domain er defineret i SAS Management Console på SAS Viya sammen med brugeren. Førstnævnte SQL_Viya_db_auth, mens brugerne her hedder hhv. Viya_Feedback_Insert_exp01u og Viya_Feedback_Insert_int01p. Disse brugere har kun rettigheder til at indsætte data i tabellen på Microsoft SQL Server.
+
+Med SAS-kode, kan det se således ud:
+
+```
+OPTIONS SET=EASYSOFT_UNICODE=YES;
+
+libname test odbc
+	dsn="_{dsn}_"
+	schema="dbo"
+	authdomain="_{authdomain}_"
+;
+
+%macro q(str);
+%quote(%')&str.%quote(%')
+%mend q;
+
+%let sqldt = %sysfunc(datetime(), e8601dt25.3);
+
+proc sql;
+CONNECT USING test;
+EXECUTE (
+INSERT INTO
+    [dbo].[Feedback]
+(
+     [Username],
+     [CASLibrary],
+     [CASTable],
+     [PrimaryKey],
+     [Status],
+     [feedback_dttm]
+) VALUES (
+     %q(&sysuserid.),
+     'MyCASLib',
+     'MyCASTable',
+     '1234',
+     1,
+     %q(&sqldt.)
+)) BY test;
+DISCONNECT FROM test;
+quit;
+```
+
+```
+OPTIONS SET=EASYSOFT_UNICODE=YES;
+
+libname test odbc
+	dsn="_{dsn}_"
+	schema="dbo"
+	authdomain="_{authdomain}_"
+;
+
+proc sql;
+INSERT INTO
+  &nbsp; test.Feedback
+(
+     Username,
+     CASLibrary,
+     CASTable,
+     PrimaryKey,
+     Status,
+     feedback_dttm
+) VALUES (
+     %quote(')&sysuserid.%quote('),
+     'MyCASLib',
+     'MyCASTable',
+     '1234',
+     1,
+     datetime()
+);
+quit;
+```
+
 # Forbedringspotentialer

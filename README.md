@@ -1,3 +1,3 @@
 # SAS
 
-* [Feedback](./Feedback)
+* [Feedback i SAS Visual Analytics](./Feedback)

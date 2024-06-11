@@ -27,9 +27,6 @@ run;
 %else %do;
 data _null_;
 file _webout;
-infile datalines;
-input;
-put _infile_;
 put '<div><input type="text" id="myInput" onkeyup="myFunction(this)" placeholder="Filter result..."></div>';
 put '<style>';
 put 'th {';
@@ -76,7 +73,6 @@ put '}';
 put '</script>';
 put '';
 run;
-*"';
 %end;
 
 %macro init();

@@ -10,39 +10,18 @@
 %if %quote(&action.) eq %quote() %then %do;
 data _null_;
 file _webout;
-infile datalines;
-input;
-put _infile_;
-/*datalines4;
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <title>SAS Metadata Browser</title>
-  </head>
-<body>
-<style>
-body { overflow: hidden; }
-</style>
-<iframe name="init" style="position: absolute; top: 0px; bottom: 0px; left: 0px; width: 200px; height: 100%; resize: horizontal; overflow: auto;" src="/SASStoredProcess/do?_program=/DWH_Fiskeri/Jobs/00.+Control+Data/Metadata_Browser&action=init"></iframe>
-<iframe name="type" style="position: absolute; top: 0px; bottom: 0px; left: 200px; width: 500px; height: 100%; resize: horizontal; overflow: auto;"></iframe>
-<iframe name="item" style="position: absolute; top: 0px; bottom: 0px; left: calc(100% - 696	px); height: 100%; width: calc(100% - 704px); resize: horizontal; overflow: auto;"></iframe
-</body>
-</html>
-;;;;*/
-datalines4;
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <!-- Document metadata goes here -->
-  </head>
-  <frameset cols="200px, 500px, *">
-    <frame name="init"
-      src="/SASStoredProcess/do?_program=/DWH_Fiskeri/Jobs/00.+Control+Data/Metadata_Browser&action=init" />
-    <frame name="type" />
-    <frame name="item" />
-  </frameset>
-</html>
-;;;;
+put '<!doctype html>';
+put '<html lang="en-US">';
+put '  <head>';
+put '    <title>SAS Metadata Browser</title>';
+put '  </head>';
+put '  <frameset cols="200px, 500px, *">';
+put '    <frame name="init"';
+put "      src=""/SASStoredProcess/do?_program=&_program.%quote(&)action=init"" />";
+put '    <frame name="type" />';
+put '    <frame name="item" />';
+put '  </frameset>';
+put '</html>';
 run;
 %end;
 %else %do;
@@ -51,54 +30,53 @@ file _webout;
 infile datalines;
 input;
 put _infile_;
-datalines4;
-<div><input type="text" id="myInput" onkeyup="myFunction(this)" placeholder="Filter result..."></div>
-<style>
-th {
-    cursor: pointer;
-}
-</style>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
-
-const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
-    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
-    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
-
-// do the work...
-document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
-    const table = th.closest('table').querySelector('tbody');
-    Array.from(table.querySelectorAll('tr'))
-        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
-        .forEach(tr => table.appendChild(tr) );
-})));
-});
-</script>
-<script>
-function myFunction(t) {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = t
-  filter = input.value.toUpperCase();
-  tr = document.querySelectorAll("table:not(.systitleandfootercontainer)>tbody>tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (tr) {
-      txtValue = tr[i].textContent || tr[i].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-</script>
-;;;;
+put '<div><input type="text" id="myInput" onkeyup="myFunction(this)" placeholder="Filter result..."></div>';
+put '<style>';
+put 'th {';
+put '    cursor: pointer;';
+put '}';
+put '</style>';
+put '<script>';
+put 'document.addEventListener(''DOMContentLoaded'', function() {';
+put 'const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;';
+put ' ';
+put 'const comparer = (idx, asc) => (a, b) => ((v1, v2) => ';
+put '    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)';
+put '    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));';
+put ' ';
+put '// do the work...';
+put 'document.querySelectorAll(''th'').forEach(th => th.addEventListener('click', (() => {';
+put '    const table = th.closest(''table'').querySelector(''tbody'');';
+put '    Array.from(table.querySelectorAll(''tr''))';
+put '        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))';
+put '        .forEach(tr => table.appendChild(tr) );';
+put '})));';
+put '});';
+put '</script>';
+put '<script>';
+put 'function myFunction(t) {';
+put '  // Declare variables';
+put '  var input, filter, table, tr, td, i, txtValue;';
+put '  input = t';
+put '  filter = input.value.toUpperCase();';
+put '  tr = document.querySelectorAll("table:not(.systitleandfootercontainer)>tbody>tr");';
+put ' ';
+put '  for (i = 0; i < tr.length; i++) {';
+put '    td = tr[i].getElementsByTagName("td")[0];';
+put '    if (tr) {';
+put '      txtValue = tr[i].textContent || tr[i].innerText;';
+put '      if (txtValue.toUpperCase().indexOf(filter) > -1) {';
+put '        tr[i].style.display = "";';
+put '      } else {';
+put '        tr[i].style.display = "none";';
+put '      }';
+put '    }';
+put '  }';
+put '}';
+put '</script>';
+put '';
 run;
+*"';
 %end;
 
 %macro init();
@@ -462,7 +440,7 @@ add
 update
 	work.metadata_&type.
 set
-	Name = cats('<a href="', "/SASStoredProcess/do?_program=&_program", '&action=item&type=', "&type.", '&item=', Id, '" target="item">', coalescec(n, '<i>{missing}</i>'), '</a>'),
+	Name = cats('<a href="', "/SASStoredProcess/do?_program=&_program.", '&action=item&type=', "&type.", '&item=', Id, '" target="item">', coalescec(n, '<i>{missing}</i>'), '</a>'),
 	Created = cats(put(datepart(input(&type._metadatacreated, anydtdtm.)), yymmddd10.), '_', put(timepart(input(&type._metadatacreated, anydtdtm.)), tod9.)),
 	Updated = cats(put(datepart(input(&type._metadataupdated, anydtdtm.)), yymmddd10.), '_', put(timepart(input(&type._metadataupdated, anydtdtm.)), tod9.))
 ;
@@ -511,7 +489,7 @@ _rc=metadata_resolve(
 name = "";
 _rc = METADATA_GETATTR(pathitem, 'Name', Name);
 txt = catx(': ', type, Name);
-put '<a href=''/SASStoredProcess/do?_program=/DWH_Fiskeri/Jobs/00.%20Control%20Data/Metadata_Browser&action=item&type=Job&item=' pathitem '&path=' path '''>' txt '</a>';
+put "<a href='/SASStoredProcess/do?_program=&_program.%quote(&)action=item&type=Job%quote(&)item=" pathitem '&path=' path '''>' txt '</a>';
 path = cats(path, pathitem, ',');
 %end;
 put '</div>';

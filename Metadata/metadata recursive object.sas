@@ -1,3 +1,14 @@
+/*
+	Macro: %getItem(itm={id/Axxxxxxx.Bxxxxxxx}, level={#/1})
+ 	Version: 1.0
+	Parameters:
+		itm: Id of metadata object
+		level: Number of recursive levels to parse, 1 returns current object
+	Objects are returned as data sets named itm_#_Axxxxxxx.Bxxxxxxx
+	Already parsed objects are not reparsed.
+	Macro variable noFollowObjects restricts parsing of metadata objects
+*/
+
 *%let item=Axxxxxxx.Bxxxxxxx;
 
 %macro getItem(itm=, level=1, __first=y, __lvl=);

@@ -21,7 +21,7 @@ filename lat1file disk "ascii-file.txt";
 * Converts single byte UTF-8 characters to ASCII;
 proc format;
 value $utf8lat
-other = .T /* {Skriv på form [_utf8_EFEBEB_];} */
+other = .T /* {Multibyte UTF-8} */
 "EFBBBF" = .R /* {Byte-Order Mark - fjernes} */
 "C2A0" = 160 /* {non-breaking space} */
 "C2A1" = 161 /* ¡ */
@@ -137,8 +137,8 @@ if length(pval) ne 0 and _utf8_length gt 0 then do;
 	if _utf8_length eq 0 then do;
 		*putlog 'NOTE:' _utf8_length= _utf8_char= _utf8_char $utf8lat.;
 		select (put(_utf8_char, $utf8lat.));
+			* Multibyte UTF-8 characters are written to output file as [_utf8_XXXXXX_];
 			when (.T) do;
-				* Multibyte UTF-8 characters are written to output file as [_utf8_XXXXXX_];
 				_hexout=cats('[_utf8_', substr(_utf8_char, 1), '_]');
 				*putlog 'NOTE:' _utf8_length= _utf8_char= _utf8_char $utf8lat.;
 				do i=1 to length(_hexout);
@@ -148,6 +148,7 @@ if length(pval) ne 0 and _utf8_length gt 0 then do;
 					_l_out + 1;
 				end;
 			end;
+			* Remove Byte-Order Mark;
 			when (.R);
 			when (.) putlog 'ERROR: UTF-8 translation went wrong: ' _N_=  _utf8_char= _n_ _utf8_char= pval=;
 			otherwise pval = byte(put(_utf8_char, $utf8lat.));

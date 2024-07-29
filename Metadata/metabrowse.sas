@@ -485,7 +485,7 @@ _rc=metadata_resolve(
 name = "";
 _rc = METADATA_GETATTR(pathitem, 'Name', Name);
 txt = catx(': ', type, Name);
-put "<a href='/SASStoredProcess/do?_program=&_program.%quote(&)action=item&type=Job%quote(&)item=" pathitem '&path=' path '''>' txt '</a>';
+put "<a href='/SASStoredProcess/do?_program=&_program.%quote(&)action=item%str(&)type=Job%quote(&)item=" pathitem '&path=' path '''>' txt '</a>';
 path = cats(path, pathitem, ',');
 %end;
 put '</div>';

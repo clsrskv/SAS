@@ -6,8 +6,8 @@
   Efterfølgende dannes XML i fil til forespørgsel i data-step med statement file xmlreq;  
   Metadata hentes med funktionen %getMeta(xmllib=&lt;libnavn&gt;);  
   Mart dannes med funktionen %joinQuery(lib=&lt;libnavn&gt;);  
-  - libnavn: op til 6 karakterer - anvendes til libref til XML SAS Library med metadata navngivet X_&lt;libnavn&gt;  
   Se [eksempler her](./examples).  
+  - libnavn: op til 6 karakterer - anvendes til libref til XML SAS Library med metadata navngivet X_&lt;libnavn&gt;  
 * [metabrowse.sas](./metabrowse.sas)  
   SAS Stored Process til erstatning af metabrowse fra SAS Display Manager.  
   Oprettes i metadata via SAS Data Integration Studio med referance til koden med %include '&lt;sti&gt;/metabrowse.sas' /source2;  

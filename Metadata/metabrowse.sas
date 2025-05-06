@@ -346,6 +346,7 @@ put '			<Trees>';
 put '				<Tree/>';
 put '			</Trees>';
 put '			<Tree Name="" Id="">';
+put '				<ParentTree/>';
 put '			</Tree>';
 put '		</Templates>';
 put '	</Options>';
@@ -362,7 +363,8 @@ proc sql noprint;
 select 1 into :hasTree
 from dictionary.columns
 where libname="WORK" and memname="METADATA_%upcase(&type.)"
-and name eq "Tree_Id";
+and name eq "Tree_Id"
+order by npos desc;
 quit;
 
 %put &=hasTree.;

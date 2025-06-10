@@ -453,3 +453,26 @@ from
 	work.jobs_columns
 ;
 quit;
+
+%macro print_bp(dslist);
+%local memlabel;
+%let i=1;
+ods _all_ close;
+ods html file="%sysfunc(getoption(WORK))/best_practise.html";
+%do %while(%scan(%quote(&dslist.), &i, %quote( )) ne %quote());
+%let memlabel=;
+proc contents data=%scan(%quote(&dslist.), &i, %quote( )) noprint out=work._tmp_props;
+run;
+data _null_;
+set work._tmp_props;
+call symputx('memlabel', memlabel, 'L');
+if _n_ eq 1 then stop;
+run;
+title "&memlabel.";
+proc print noobs data=%scan(%quote(&dslist.), &i, %quote( ));
+run;
+%let i=%eval(&i.+1);
+%end;
+ods html close;
+%mend print_bp;
+%print_bp(&stp_bestpractise_tables.)

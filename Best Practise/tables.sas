@@ -15,24 +15,13 @@ Description:
 
 *LIBNAME &libref. BASE 'path to persistent data';
 
-%global refresh;
-%macro refresh(do_refresh);
-%global exists stp_bestpractise_exists;
-%let stp_bestpractise_exists=1;
-%if %quote(&do_refresh.) eq %quote(false) %then %do;
-	%do i=1 %to %sysfunc(countw(%quote(&stp_bestpractise_tables.), %quote( )));
-		%if not(%sysfunc(exist(%scan(%quote(&stp_bestpractise_tables.), &i., %quote( ))))) and %quote(&stp_bestpractise_exists.) eq %quote(1) %then %do;
-			%let stp_bestpractise_exists=0;
-		%end;
-		%put %scan(%quote(&stp_bestpractise_tables.), &i., %quote( )) %sysfunc(ifc(%sysfunc(exist(%scan(%quote(&stp_bestpractise_tables.), &i., %quote( )))) eq 1, exists, not exists));
-	%end;
-%end;
-%put &=stp_bestpractise_exists.;
-%mend refresh;
-%refresh(&refresh.);
+proc datasets library=work nolist nodetails nowarn memtype=(view data);
+delete
+	metadata_physicaltable
+	_tmp_physicaltable
+;
+quit;
 
-%macro data();
-%if %quote(&refresh.) ne %quote(false) or %quote(&stp_bestpractise_exists.) eq %quote(0) %then %do;
 %include "&macro_query_metadata." / source2;
 
 data _null_;
@@ -77,7 +66,7 @@ order by npos desc
 ;
 quit;
 
-data work.PhysicalTable;
+data work._tmp_PhysicalTable;
 set work.metadata_PhysicalTable;
 TablePath=catx('/', &treecols.);
 Engine=COALESCEc(SASLibrary_Engine, SASLibrary1_Engine);
@@ -102,7 +91,7 @@ as select distinct
 	Table_Name label="Metadata Name",
 	TablePath label="Table Metadata Path"
 from
-	work.physicaltable
+	work._tmp_physicaltable
 where
 	libref eq ''
 ;
@@ -120,7 +109,7 @@ as select distinct
 	LibName label="SASLib Navn",
 	LibId label="SASLib ID"
 from
-	work.physicaltable
+	work._tmp_physicaltable
 group by
 	LibId,
 	SASTableName
@@ -143,7 +132,7 @@ as select distinct
 	LibName label="SASLib Name",
 	LibId label="SASLib ID"
 from
-	work.physicaltable
+	work._tmp_physicaltable
 where
 	(
 		UPCASE(Table_Name) ne UPCASE(SASTableName)
@@ -168,7 +157,7 @@ as select distinct
 	LibName label="SASLib Name",
 	LibId label="SASLib ID"
 from
-	work.physicaltable
+	work._tmp_physicaltable
 where
 	upcase(scan(Table_Name,1,'.')) ne upcase(Libref)
 	and Libref ne ''
@@ -178,6 +167,28 @@ order by
 ;
 quit;
 
+%macro print_bp(dslist);
+%local memlabel;
+%let i=1;
+ods _all_ close;
+ods html file="%sysfunc(getoption(WORK))/best_practise.html";
+%do %while(%scan(%quote(&dslist.), &i, %quote( )) ne %quote());
+%let memlabel=;
+proc contents data=%scan(%quote(&dslist.), &i, %quote( )) noprint out=work._tmp_props;
+run;
+data _null_;
+set work._tmp_props;
+call symputx('memlabel', memlabel, 'L');
+if _n_ eq 1 then stop;
+run;
+title "&memlabel.";
+proc print noobs data=%scan(%quote(&dslist.), &i, %quote( ));
+run;
+%let i=%eval(&i.+1);
 %end;
-%mend data;
-%data();
+ods html close;
+proc datasets library=work nolist nodetails nowarn memtype=(view data);
+delete _tmp_props;
+quit;
+%mend print_bp;
+%print_bp(&stp_bestpractise_tables.)

@@ -16,6 +16,25 @@ Description:
 
 *LIBNAME &libref. BASE 'path to persistent data';
 
+proc datasets library=work nolist nodetails nowarn memtype=(view data);
+delete
+	metadata_select
+	metadata_saslibrary
+	_tmp_properties
+	_tmp_prop_count
+	_tmp_setproperties
+	_tmp_properties
+	_tmp_setprop_count
+	_tmp_jobs_tables
+	_tmp_tablesources
+	_tmp_columns
+	_tmp_casloaders
+	_tmp_nosave
+	_tmp_noreplace
+	_tmp_jobs_columns
+;
+quit;
+
 %include "&macro_query_metadata." / source2;
 
 data _null_;
@@ -129,7 +148,7 @@ run;
 %getMeta(xmllib=Select);
 %joinQuery(lib=Select);
 
-data work._properties;
+data work._tmp_properties;
 set work.metadata_select;
 drop reposid type ns flags;
 drop PropertySet_Id TransformationStep_Id;
@@ -137,13 +156,13 @@ run;
 
 proc sql;
 create table
-	work.prop_count
+	work._tmp_prop_count
 as select
 	Property_Name,
 	Property_DefaultValue,
 	Count(*) as antal
 from
-	work._properties
+	work._tmp_properties
 group by
 	1,2
 ;
@@ -180,28 +199,28 @@ run;
 %getMeta(xmllib=Select);
 %joinQuery(lib=Select);
 
-data work._setproperties;
+data work._tmp_setproperties;
 set work.metadata_select;
 drop reposid type ns flags;
 drop PropertySet_Id TransformationStep_Id;
 run;
 
-data work.properties;
+data work._tmp_properties;
 set
-	work._setproperties
-	work._properties
+	work._tmp_setproperties
+	work._tmp_properties
 ;
 run;
 
 proc sql;
 create table
-	work.setprop_count
+	work._tmp_setprop_count
 as select
 	Property_Name,
 	Property_DefaultValue,
 	Count(*) as antal
 from
-	work._setproperties
+	work._tmp_setproperties
 where
 	Property_Name ne 'UI_PLACEMENT'
 group by
@@ -257,7 +276,7 @@ order by npos desc
 ;
 quit;
 
-data work.jobs_tables;
+data work._tmp_jobs_tables;
 set work.metadata_select;
 drop reposid type ns flags;
 Path=catx('/', &treecols.);
@@ -289,7 +308,7 @@ run;
 %getMeta(xmllib=Select);
 %joinQuery(lib=Select);
 
-data work.tablesources;
+data work._tmp_tablesources;
 set work.metadata_select;
 drop reposid type ns flags;
 run;
@@ -323,7 +342,7 @@ run;
 %getMeta(xmllib=Select);
 %joinQuery(lib=Select);
 
-data work.columns;
+data work._tmp_columns;
 set work.metadata_select;
 drop reposid type ns flags;
 run;
@@ -334,7 +353,7 @@ quit;
 
 proc sql;
 create table
-	work.casloaders
+	work._tmp_casloaders
 as select distinct
 	coalesce(
 		J.Select_Id,
@@ -355,20 +374,20 @@ as select distinct
 	S.Property_Name,
 	S.Property_DefaultValue
 from
-	work.jobs_tables as j
+	work._tmp_jobs_tables as j
 full join
-	work.properties as s
+	work._tmp_properties as s
 on
 	j.Select_Id eq s.Select_Id
 left join
-	work.tablesources as ts
+	work._tmp_tablesources as ts
 on
 	j.Select_Id eq ts.Select_Id
 ;
 quit;
 
-data work.nosave;
-set work.casloaders;
+data work._tmp_nosave;
+set work._tmp_casloaders;
 where
 	Property_Name eq 'SAVETABLE'
 	and Property_DefaultValue eq 'false'
@@ -376,12 +395,12 @@ where
 keep path job_id job_name sourcetable targettable;
 run;
 
-proc sort data=work.nosave;
+proc sort data=work._tmp_nosave;
 by path job_name;
 run;
 
-data work.noreplace;
-set work.casloaders;
+data work._tmp_noreplace;
+set work._tmp_casloaders;
 where
 	Property_Name eq 'Option.ReplaceType'
 	and Property_DefaultValue ne 'REPLACE'
@@ -391,7 +410,7 @@ run;
 
 proc sql;
 create table
-	work.jobs_columns
+	work._tmp_jobs_columns
 as select distinct
 	casloaders.Job_Id,
 	casloaders.Job_Name,
@@ -401,9 +420,9 @@ as select distinct
 	columns.Column_Name,
 	columns.Column1_Name
 from
-	work.casloaders
+	work._tmp_casloaders as casloaders
 left join
-	work.columns
+	work._tmp_columns as columns
 on
 	casloaders.Select_Id eq columns.Select_Id
 where
@@ -422,7 +441,7 @@ as select
 	Property_DefaultValue label='CAS handling',
 	Path label='Metadata Path'
 from
-	work.noreplace
+	work._tmp_noreplace
 ;
 quit;
 
@@ -436,7 +455,7 @@ as select
 	TargetTable label='Target Table',
 	Path label='Metadata Path'
 from
-	work.nosave
+	work._tmp_nosave
 ;
 quit;
 
@@ -450,7 +469,7 @@ as select distinct
 	TargetTable label='Target Table',
 	Path label='Metadata Path'
 from
-	work.jobs_columns
+	work._tmp_jobs_columns
 ;
 quit;
 
@@ -474,5 +493,8 @@ run;
 %let i=%eval(&i.+1);
 %end;
 ods html close;
+proc datasets library=work nolist nodetails nowarn memtype=(view data);
+delete _tmp_props;
+quit;
 %mend print_bp;
 %print_bp(&stp_bestpractise_tables.)

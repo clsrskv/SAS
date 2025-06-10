@@ -17,24 +17,20 @@ Description:
 
 *LIBNAME &libref. BASE 'path to persistent data';
 
-%global refresh;
-%macro refresh(do_refresh);
-%global exists stp_bestpractise_exists;
-%let stp_bestpractise_exists=1;
-%if %quote(&do_refresh.) eq %quote(false) %then %do;
-	%do i=1 %to %sysfunc(countw(%quote(&stp_bestpractise_tables.), %quote( )));
-		%if not(%sysfunc(exist(%scan(%quote(&stp_bestpractise_tables.), &i., %quote( ))))) and %quote(&stp_bestpractise_exists.) eq %quote(1) %then %do;
-			%let stp_bestpractise_exists=0;
-		%end;
-		%put %scan(%quote(&stp_bestpractise_tables.), &i., %quote( )) %sysfunc(ifc(%sysfunc(exist(%scan(%quote(&stp_bestpractise_tables.), &i., %quote( )))) eq 1, exists, not exists));
-	%end;
-%end;
-%put &=stp_bestpractise_exists.;
-%mend refresh;
-%refresh(&refresh.);
+proc datasets library=work nolist nodetails nowarn memtype=(view data);
+delete
+	metadata_job
+	metadata_property
+	_tmp_jobs
+	_tmp_deployed
+	_tmp__deployed
+	_tmp___deployed
+	_tmp____deployed
+	_tmp_____deployed
+	_tmp______deployed
+;
+quit;
 
-%macro data();
-%if %quote(&refresh.) ne %quote(false) or %quote(&stp_bestpractise_exists.) eq %quote(0) %then %do;
 %include "&macro_query_metadata." / source2;
 
 data _null_;
@@ -136,18 +132,18 @@ order by npos desc
 ;
 quit;
 
-data work.Jobs;
+data work._tmp_Jobs;
 set work.metadata_job;
 drop Reposid Type NS Flags;
 Job_Path=catx('/', &treecols.);
 drop Action_Id ConditionActionSet_Id Property_Id PropertySet_Id Tree: ParentTree:;
 run;
 
-data work._Deployed;
+data work._tmp__Deployed;
 length Value $128;
 set
-	work.Jobs(where=(Value ne '') rename=(Directory_DirectoryName=Value) in=dir)
-	work.Jobs(rename=(Property_DefaultValue=Value))
+	work._tmp_Jobs(where=(Value ne '') rename=(Directory_DirectoryName=Value) in=dir)
+	work._tmp_Jobs(rename=(Property_DefaultValue=Value))
 ;
 if dir then Property_Name='DirectoryName';
 Name=translate(trim(Property_Name),'_',' ');
@@ -159,19 +155,19 @@ if
 ;
 run;
 
-proc sort data=work._Deployed(keep=
+proc sort data=work._tmp__Deployed(keep=
 		Job_Path Job_Name Job_Id JFJob_Name JFJob_Id Name
 		Value	
 	)
 	noduprecs
-	out=work.__Deployed
+	out=work._tmp___Deployed
 ;
 by Job_Path Job_Name Job_Id JFJob_Name JFJob_Id Name;
 run;
 
-data work.___Deployed;
+data work._tmp____Deployed;
 length Value _Value $1024;
-set work.__Deployed;
+set work._tmp___Deployed;
 by Job_Path Job_Name Job_Id JFJob_Name JFJob_Id Name;
 label
 	Job_Path='Metadata Path'
@@ -195,7 +191,7 @@ end;
 drop _Value;
 run;
 
-proc transpose data=work.___Deployed out=work.____Deployed(drop=_NAME_ x);
+proc transpose data=work._tmp____Deployed out=work._tmp_____Deployed(drop=_NAME_ x);
 by Job_Path Job_Name Job_Id JFJob_Name JFJob_Id;
 id Name;
 idlabel Label;
@@ -204,20 +200,20 @@ run;
 
 proc sql;
 create table
-	work._____Deployed
+	work._tmp______Deployed
 as select
-	____Deployed.*,
+	Deployed.*,
 	METADATA_Property.Property_DefaultValue as UserColumn
 from
-	work.____Deployed
+	work._tmp_____Deployed as Deployed
 left join
 	work.METADATA_Property
 on
-	____Deployed.Job_Id eq METADATA_Property.Job_Id
+	Deployed.Job_Id eq METADATA_Property.Job_Id
 ;
 quit;
 
-data work.Deployed;
+data work._tmp_Deployed;
 length Job_Path $512 Job_Name $64 Job_Id $17 JFJob_Name $64 JFJob_Id $17;
 length DirectoryName Dataset_Name Libref Email_Address Message $1024 UserColumn $32;
 label
@@ -228,11 +224,11 @@ label
 	JFJob_Name='Metadata Id of deployed job'
 	UserColumn='Column Name'
 ;
-set work._____Deployed;
+set work._tmp______Deployed;
 run;
 
 proc sort
-	data=work.Deployed
+	data=work._tmp_Deployed
 	out=&libref..stp_bp_stat_hand_none(
 		label='Deployed jobs without Status Handling'
 		keep=Job_Path Job_Name Job_Id JFJob_Name JFJob_Id
@@ -243,7 +239,7 @@ by Job_path Job_name;
 run;
 
 proc sort
-	data=work.Deployed
+	data=work._tmp_Deployed
 	out=&libref..stp_bp_stat_hand_other(
 		label='Deployede jobs med anden status'
 	)
@@ -253,7 +249,7 @@ by Job_path Job_name;
 run;
 
 proc sort
-	data=work.Deployed
+	data=work._tmp_Deployed
 	out=&libref..stp_bp_stat_hand_wrong(
 		label='Deployede jobs with wrong Status Handling'
 		drop=Email_Address Message
@@ -274,6 +270,29 @@ not (
 ;
 by Job_path Job_name;
 run;
+
+%macro print_bp(dslist);
+%local memlabel;
+%let i=1;
+ods _all_ close;
+ods html file="%sysfunc(getoption(WORK))/best_practise.html";
+%do %while(%scan(%quote(&dslist.), &i, %quote( )) ne %quote());
+%let memlabel=;
+proc contents data=%scan(%quote(&dslist.), &i, %quote( )) noprint out=work._tmp_props;
+run;
+data _null_;
+set work._tmp_props;
+call symputx('memlabel', memlabel, 'L');
+if _n_ eq 1 then stop;
+run;
+title "&memlabel.";
+proc print noobs data=%scan(%quote(&dslist.), &i, %quote( ));
+run;
+%let i=%eval(&i.+1);
 %end;
-%mend data;
-%data();
+ods html close;
+proc datasets library=work nolist nodetails nowarn memtype=(view data);
+delete _tmp_props;
+quit;
+%mend print_bp;
+%print_bp(&stp_bestpractise_tables.)

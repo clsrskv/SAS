@@ -32,7 +32,6 @@ delete
 	_tmp_deployments_in_flow
 	_tmp_deployments_in_flow_transp
 	_tmp_props
-	%sysfunc(tranwrd(%quote(&stp_bestpractise_tables.), %quote(&libref..), %quote()))
 ;
 quit;
 
@@ -437,5 +436,8 @@ run;
 %let i=%eval(&i.+1);
 %end;
 ods html close;
+proc datasets library=work nolist nodetails nowarn memtype=(view data);
+delete _tmp_props;
+quit;
 %mend print_bp;
 %print_bp(&stp_bestpractise_tables.)

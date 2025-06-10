@@ -14,24 +14,14 @@ Description:
 
 *LIBNAME &libref. BASE 'path to persistent data';
 
-%global refresh;
-%macro refresh(do_refresh);
-%global exists stp_bestpractise_exists;
-%let stp_bestpractise_exists=1;
-%if %quote(&do_refresh.) eq %quote(false) %then %do;
-	%do i=1 %to %sysfunc(countw(%quote(&stp_bestpractise_tables.), %quote( )));
-		%if not(%sysfunc(exist(%scan(%quote(&stp_bestpractise_tables.), &i., %quote( ))))) and %quote(&stp_bestpractise_exists.) eq %quote(1) %then %do;
-			%let stp_bestpractise_exists=0;
-		%end;
-		%put %scan(%quote(&stp_bestpractise_tables.), &i., %quote( )) %sysfunc(ifc(%sysfunc(exist(%scan(%quote(&stp_bestpractise_tables.), &i., %quote( )))) eq 1, exists, not exists));
-	%end;
-%end;
-%put &=stp_bestpractise_exists.;
-%mend refresh;
-%refresh(&refresh.);
+proc datasets library=work nolist nodetails nowarn memtype=(view data);
+delete
+	metadata_job
+	_tmp_nummer
+	_tmp_props
+;
+quit;
 
-%macro data();
-%if %quote(&refresh.) ne %quote(false) or %quote(&stp_bestpractise_exists.) eq %quote(0) %then %do;
 %include "&macro_query_metadata." / source2;
 
 data _null_;
@@ -92,7 +82,7 @@ order by
 ;
 quit;
 
-data work.nummer;
+data work._tmp_nummer;
 set work.stp_bp_Jobs;
 if _n_ eq 1 then do;
 	retain _re _re2;
@@ -158,7 +148,7 @@ as select
 	NUMMER.Job_Desc, 
 	NUMMER.Job_Id
 from
-	work.nummer
+	work._tmp_nummer as nummer
 group by
 	Job_Name_Id
 having
@@ -168,6 +158,29 @@ order by
 	Job_Name
 ;
 quit;
+
+%macro print_bp(dslist);
+%local memlabel;
+%let i=1;
+ods _all_ close;
+ods html file="%sysfunc(getoption(WORK))/best_practise.html";
+%do %while(%scan(%quote(&dslist.), &i, %quote( )) ne %quote());
+%let memlabel=;
+proc contents data=%scan(%quote(&dslist.), &i, %quote( )) noprint out=work._tmp_props;
+run;
+data _null_;
+set work._tmp_props;
+call symputx('memlabel', memlabel, 'L');
+if _n_ eq 1 then stop;
+run;
+title "&memlabel.";
+proc print noobs data=%scan(%quote(&dslist.), &i, %quote( ));
+run;
+%let i=%eval(&i.+1);
 %end;
-%mend data;
-%data();
+ods html close;
+proc datasets library=work nolist nodetails nowarn memtype=(view data);
+delete _tmp_props;
+quit;
+%mend print_bp;
+%print_bp(&stp_bestpractise_tables.)

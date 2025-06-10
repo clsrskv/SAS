@@ -22,24 +22,20 @@ Descrition:
 
 *LIBNAME &libref. BASE 'path to persistent data';
 
-%global refresh;
-%macro refresh(do_refresh);
-%global exists stp_bestpractise_exists;
-%let stp_bestpractise_exists=1;
-%if %quote(&do_refresh.) eq %quote(false) %then %do;
-	%do i=1 %to %sysfunc(countw(%quote(&stp_bestpractise_tables.), %quote( )));
-		%if not(%sysfunc(exist(%scan(%quote(&stp_bestpractise_tables.), &i., %quote( ))))) and %quote(&stp_bestpractise_exists.) eq %quote(1) %then %do;
-			%let stp_bestpractise_exists=0;
-		%end;
-		%put %scan(%quote(&stp_bestpractise_tables.), &i., %quote( )) %sysfunc(ifc(%sysfunc(exist(%scan(%quote(&stp_bestpractise_tables.), &i., %quote( )))) eq 1, exists, not exists));
-	%end;
-%end;
-%put &=stp_bestpractise_exists.;
-%mend refresh;
-%refresh(&refresh.);
+proc datasets library=work nolist nodetails nowarn memtype=(data view);
+delete
+	_tmp_deployedpaths
+	_tmp_deployedjobs
+	_tmp_files
+	_tmp_deployed
+	_tmp_jfjobs
+	_tmp_deployments_in_flow
+	_tmp_deployments_in_flow_transp
+	_tmp_props
+	%sysfunc(tranwrd(%quote(&stp_bestpractise_tables.), %quote(&libref..), %quote()))
+;
+quit;
 
-%macro data();
-%if %quote(&refresh.) ne %quote(false) or %quote(&stp_bestpractise_exists.) eq %quote(0) %then %do;
 %include "&macro_query_metadata." / source2;
 
 data _null_;
@@ -78,7 +74,7 @@ order by npos desc
 ;
 quit;
 
-data work.DeployedPaths;
+data work._tmp_DeployedPaths;
 set work.metadata_JFJob;
 Deployment_Path=catx('/', &treecols.);
 drop Reposid Type NS Flags;
@@ -137,7 +133,7 @@ order by npos desc
 ;
 quit;
 
-data work.DeployedJobs;
+data work._tmp_DeployedJobs;
 length level $16;
 set work.metadata_JFJob;
 Job_Path=catx('/', &treecols.);
@@ -149,16 +145,16 @@ drop Tree: ParentTree: Transformation:;
 run;
 
 proc datasets library=work nolist nodetails;
-delete metadata_job;
+delete metadata_JFJob;
 quit;
 
-proc sort data=work.DeployedJobs;
+/*proc sort data=work.DeployedJobs;
 by Job_Path Job_Name;
-run;
+run;*/
 
 filename deploy pipe "find &path_to_deployed_code. -type f -maxdepth 1" encoding='utf-8';
 
-data work.files;
+data work._tmp_files;
 infile deploy;
 input;
 file_name=scan(_infile_, -1, '/');
@@ -168,8 +164,8 @@ run;
 filename deploy clear;
 
 proc sql;
-create table
-	work.Deployed
+create view
+	work._tmp_Deployed
 as select
 	DEPLOYEDJOBS.Job_Name label='Job Metadata Name',
 	DEPLOYEDJOBS.JFJob_Name label='Deployment Metadata Name',
@@ -179,13 +175,13 @@ as select
 	FILES.file_name label='File Name',
 	FILES.file_path label='File Path'
 from
-	work.Deployedjobs
+	work._tmp_DeployedJobs as DeployedJobs
 full join
-	work.files
+	work._tmp_files as files
 on
 	files.file_name eq Deployedjobs.File_FileName
 left join
-	work.DeployedPaths
+	work._tmp_DeployedPaths as DeployedPaths
 on
 	Deployedjobs.JFJob_Id eq DeployedPaths.JFJob_Id
 ;
@@ -201,7 +197,7 @@ data
 	&libref..stp_bp_deploy_ne_jobnavn(label='Deploymentnavn different from job name' keep=JFJob_Name Job_Name Job_Path Deployment_Path)
 	&libref..stp_bp_deploy_bad_chars(label='Jobnavn with non standard characters' keep=Job_Name Job_Path)
 ;
-set work.deployed;
+set work._tmp_Deployed;
 if jfjob_Name eq '' then output &libref..stp_bp_deploy_fil_u;
 else if job_Name eq '' then output &libref..stp_bp_deploy_job_u;
 else if file_name eq '' then output &libref..stp_bp_deploy_u_filer;
@@ -282,7 +278,7 @@ order by npos desc
 ;
 quit;
 
-data work.JFJobs;
+data work._tmp_JFJobs;
 set work.metadata_JFJOB;
 length fileexists 3;
 JFJob_Path=catx('/', &treecols.);
@@ -290,12 +286,12 @@ drop tree: parenttree: reposid ns flags;
 run;
 
 proc datasets library=work nolist nodetails;
-delete metadata_JFJOB;
+delete metadata_JFJob;
 quit;
 
 filename depfiles pipe "ls -p &path_to_deployed_code. | grep -v /" encoding='utf-8';
 
-data work.files;
+data work._tmp_files;
 length f $256 path filename $128;
 infile depfiles truncover;
 input f;
@@ -306,12 +302,12 @@ run;
 filename depfiles clear;
 
 proc sql;
-update work.JFJobs
+update work._tmp_JFJobs as JFJobs
 set fileexists = (
 	select
 		count(*)
 	from
-		work.files
+		work._tmp_files as files
 	where
 		files.filename eq JFJobs.File_FileName
 )
@@ -320,7 +316,7 @@ where
 		select
 			*
 		from
-			work.files
+			work._tmp_files as files
 		where
 			files.filename eq JFJobs.File_FileName
 	)
@@ -338,30 +334,14 @@ as select
 	JFJOBS.JFJob_Name label="Deployment Name",
 	JFJOBS.JFJob_Path label="Metadata Path"
 from
-	work.JFJobs
+	work._tmp_JFJobs as JFJobs
 where
 	TransformationActivity_Name eq ''
 order by
 	JFJOBS.JFJob_Name
 ;
-*create table
-	&libref..stp_bp_deployments_filer_uden(label="SAS code without deployments")
-as select
-	files.filename label='File Name'
-from
-	work.files
-where
-	not exists (
-		select
-			*
-		from
-			work.JFJobs
-		where
-			files.filename eq JFJobs.File_FileName
-	)
-;
 create table
-	work.deployments_i_flow
+	work._tmp_Deployments_in_flow
 as select
 	JFJOBS.JFJob_Name label="Deployment Name",
 	CASE WHEN JFJOBS.FileExists GT 0 THEN '<span style="background-color: lightgreen">Yes</span>' ELSE '<span style="background-color: red">No</span>' END as FileExists label="File exist",
@@ -373,7 +353,7 @@ as select
 	JFJOBS.Job_Name label="Job Name", 
 	JFJOBS.JFJob_Path label="Metadata Path"
 from
-	work.JFJobs
+	work._tmp_JFJobs as JFJobs
 where
 	TransformationActivity_Name ne ''
 order by
@@ -382,14 +362,14 @@ order by
 ;
 quit;
 
-proc transpose data=work.deployments_i_flow out=work.deployments_i_flow_transposed;
+proc transpose data=work._tmp_Deployments_in_flow out=work._tmp_Deployments_in_flow_transp;
 by JFJob_Name;
 copy FileExists Flows Directory_Name Directory_DirectoryName File_FileName Job_Name JFJob_Path;
 var TransformationActivity_Name;
 run;
 
 data &libref..stp_bp_deployments_i_flow(label="Deployments in flow");
-set work.deployments_i_flow_transposed;
+set work._tmp_Deployments_in_flow_transp;
 Flows=cats('<span>',catx('<br>', of col:),'</span>');
 if col1 ne '';
 drop col: _:;
@@ -436,6 +416,26 @@ filename schedule clear;
 proc sort data=&libref..stp_bp_deployments_scripts;
 by user flow sas;
 run;
+
+%macro print_bp(dslist);
+%local memlabel;
+%let i=1;
+ods _all_ close;
+ods html file="%sysfunc(getoption(WORK))/best_practise.html";
+%do %while(%scan(%quote(&dslist.), &i, %quote( )) ne %quote());
+%let memlabel=;
+proc contents data=%scan(%quote(&dslist.), &i, %quote( )) noprint out=work._tmp_props;
+run;
+data _null_;
+set work._tmp_props;
+call symputx('memlabel', memlabel, 'L');
+if _n_ eq 1 then stop;
+run;
+title "&memlabel.";
+proc print noobs data=%scan(%quote(&dslist.), &i, %quote( ));
+run;
+%let i=%eval(&i.+1);
 %end;
-%mend data;
-%data();
+ods html close;
+%mend print_bp;
+%print_bp(&stp_bestpractise_tables.)

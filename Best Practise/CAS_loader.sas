@@ -16,24 +16,6 @@ Description:
 
 *LIBNAME &libref. BASE 'path to persistent data';
 
-%global refresh;
-%macro refresh(do_refresh);
-%global exists stp_bestpractise_exists;
-%let stp_bestpractise_exists=1;
-%if %quote(&do_refresh.) eq %quote(false) %then %do;
-	%do i=1 %to %sysfunc(countw(%quote(&stp_bestpractise_tables.), %quote( )));
-		%if not(%sysfunc(exist(%scan(%quote(&stp_bestpractise_tables.), &i., %quote( ))))) and %quote(&stp_bestpractise_exists.) eq %quote(1) %then %do;
-			%let stp_bestpractise_exists=0;
-		%end;
-		%put %scan(%quote(&stp_bestpractise_tables.), &i., %quote( )) %sysfunc(ifc(%sysfunc(exist(%scan(%quote(&stp_bestpractise_tables.), &i., %quote( )))) eq 1, exists, not exists));
-	%end;
-%end;
-%put &=stp_bestpractise_exists.;
-%mend refresh;
-%refresh(&refresh.);
-
-%macro data();
-%if %quote(&refresh.) ne %quote(false) or %quote(&stp_bestpractise_exists.) eq %quote(0) %then %do;
 %include "&macro_query_metadata." / source2;
 
 data _null_;
@@ -471,6 +453,3 @@ from
 	work.jobs_columns
 ;
 quit;
-%end;
-%mend data;
-%data();

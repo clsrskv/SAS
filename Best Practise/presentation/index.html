@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Best practise med SAS Metadata</title>
+
+		<meta name="description" content="Anvendelse af SAS Metadata til opfølgning på best practise">
+		<meta name="author" content="Claus Ørskov">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<script>
+		document.addEventListener("DOMContentLoaded", (event) => {
+			let d = document.createElement('img');
+			d.style.position='fixed';
+			d.style.bottom='0px';
+			d.style.left='0px';
+			d.style.width='200px';
+			d.style.margin='0 auto 4rem auto';
+			d.style.background='transparent';
+			d.style.verticalAlign='top';
+			d.src='https://lfst.dk/Media/638632936405194573/LFST_logo2024_sort_1.svg';
+			d.alt='Landbrugs- og Fiskeristyrelsen';
+			let sections=document.querySelectorAll('.slides');
+			for(let i=0; i<sections.length; i++) {
+				sections[i].appendChild(d);
+			}
+		})
+		</script>
+	</head>
+
+	<body>
+
+			console.log(document.querySelectorAll('.slides>section:not(:first-child)')[0].innerHTML);
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background-gradient="linear-gradient(to bottom, #373737, #777)">
+					<a href="https://revealjs.com">
+						<img src="https://lfst.dk/Media/638632936405194573/LFST_logo2024_sort_1.svg" alt="Landbrugs- og Fiskeristyrelsen" style="width: 400px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+					</a>
+					<h3>Best practise med SAS Metadata</h3>
+					<p>
+						<small>Claus Ørskov</a>, <a href="https://lfst.dk">Landbrugs- og Fiskeristyrelsen</a></small>
+					</p>
+				</section>
+
+				<section data-background-gradient="linear-gradient(to bottom, #373737, #777)">
+					<section>
+					<h3>Hvem</h3>
+					<h4>Team Data & Analyse</h4>
+						<ul>
+							<li>10 medarbejdere</li>
+							<li>8 SAS-udviklere</li>
+							<li>Del af IT-kontor med 135 medarbejdere</li>
+							<li>SAS anvendt siden 1990'erne</li>
+						</ul>
+					</section>
+					<section>
+					<h3>Hvad</h3>
+					<h4>Statistik og rapportering</h4>
+						<ul>
+							<li>Fiskeristatistik</li>
+							<li>Risikorapportering</li>
+							<li>Administrativ understøttelse</li>
+						</ul>
+					</section>
+					<section>
+					<h3>Hvordan</h3>
+					<h4>The Power to Know</h4>
+						<ul>
+							<li>SAS 9.4 og SAS Viya</li>
+							<li>Anvendt SAS DI siden 2011</li>
+							<li>1.100 jobs</li>
+							<li>650 deployede jobs</li>
+							<li>150 flows</li>
+							<li>3.500 daglige jobafviklinger...</li>
+						</ul>
+					</section>
+				</section>
+
+				<section data-background-gradient="linear-gradient(to bottom, #373737, #777)">
+					<section>
+					<h3>Best practise</h3>
+					<h4>Hvad?</h4>
+						<ul>
+							<li>Standarder</li>
+							<li>Struktur</li>
+							<li>Genkendelighed</li>
+						</ul>
+					</section>
+					<section>
+					<h3>Best practise</h3>
+					<h4>Hvordan?</h4>
+						<ul>
+							<li>Fælles beslutninger</li>
+							<li>Evaluering</li>
+							<li>Tilpasning</li>
+						</ul>
+					</section>
+					<section>
+					<h3>Best practise</h3>
+					<h4>Hvorfor?</h4>
+						<ul>
+							<li>Samarbejde</li>
+							<li>Stabilitet</li>
+							<li>Agilitet</li>
+							<li>Mindre sårbarhed</li>
+						</ul>
+					</section>
+				</section>
+
+				<section data-auto-animate data-background-gradient="linear-gradient(to bottom, #373737, #777)">
+					<section>
+						<h2>Eksempler på opf&oslash;lgning</h2>
+						<p>
+							<ul>
+								<li>Navnvivning</li>
+								<li>Jobs, deployments og flows</li>
+								<li>Tabeller og libraries</li>
+								<li>Kolonner</li>
+								<li>Transformationer</li>
+								<li>Andet...?</li>
+							</ul>
+						</p>
+					</section>
+
+					<section>
+						<h2>Navngivning</h2>
+						<p>
+							<ul>
+								<li>Danske bogstaver - risiko for fejl i afvikling og logovervågning</li>
+								<li>Reducerer overskuelighed</li>
+								<li>Dubletter i metadatanavngivning</li>
+							</ul>
+						</p>
+					</section>
+
+					<section>
+						<h2>Jobs, deployments og flows</h2>
+						<p>
+							<ul>
+								<li>Ingen mellemrum - sammenhæng ml. jobs og deployments</li>
+								<li>Undgå danske karakterer</li>
+								<li>Jobnavne skal være unikke</li>
+								<li>Statushandling på deployede jobs</li>
+								<li>Jobs for hver deployment</li>
+								<li>Scheduleret deployment eksisterer</li>
+								<li>Kode eksisterer</li>
+							</ul>
+						</p>
+					</section>
+
+					<section>
+						<h2>Tabeller og libraries</h2>
+						<p>
+							<ul>
+								<li>Prefikset med libref</li>
+								<li>Unikke fysiske tabeller</li>
+								<li>Korrekt metadataplacering</li>
+							</ul>
+						</p>
+					</section>
+
+					<section>
+						<h2>Kolonner</h2>
+							<ul>
+								<li>Undgå VALIDVARNAME=ANY</li>
+								<li>/^[a-zA-Z_][a-zA-Z0-9_]{1,31}$/</li>
+								<li>Ingen æøå, mellemrum!</li>
+							</ul>
+						</p>
+					</section>
+
+					<section>
+						<h2>Transformationer</h2>
+							<ul>
+								<li>CAS-loader - replace</li>
+							</ul>
+						</p>
+					</section>
+
+					<section>
+						<h2>Andet...?</h2>
+						<p>
+							<ul>
+								<li>Kolonnedefinitioner</li>
+								<li>User Written Code</li>
+							</ul>
+						</p>
+					</section>
+				</section>
+
+				<section data-background-gradient="linear-gradient(to bottom, #373737, #777)">
+					<section>
+						<h3>SAS Metadata</h3>
+						<p>Denne præsentation</p>
+						<p>
+							<ul>
+								<li>Eksempler på anvendelse</li>
+								<li>Henvisninger til dokumentation</li>
+							</ul> 
+					</section>
+					<section>
+						<h2>SAS Metadata</h2>
+						<p>Indeholder ikke</p>
+						<p>
+							<ul>
+								<li>Vejledning i XML-kodning</li>
+							</ul>
+						</p>
+					</section>
+					<section>
+						<h2 data-id="code-title">Hent SAS Metadata</h2>
+						<pre data-id="code-animation"><code class="hljs sas" data-trim data-line-numbers="|1-4|7|48|53-54">
+							%include
+							&#9;'path-to-metadata-join-code/macro_query_metadata.sas'
+							&#9;/source2
+							;
+							
+							data _null_;
+							file xmlreq;
+							put '&lt;GetMetadataObjects&gt;';
+							put '	&lt;Reposid&gt;$METAREPOSITORY&lt;/Reposid&gt;';
+							put '	&lt;Type&gt;SASLibrary&lt;/Type&gt;';
+							put '	&lt;Objects/&gt;';
+							put '	&lt;NS&gt;SAS&lt;/NS&gt;';
+							put '	&lt;Flags&gt;388&lt;/Flags&gt;';
+							put '	&lt;Options&gt;';
+							put '		&lt;Templates&gt;';
+							put '			&lt;SASLibrary Id="" Name="" Desc=""';
+							put '				MetadataCreated=""';
+							put '				MetadataUpdated=""';
+							put '				&gt;';
+							put '				&lt;UsingPackages/&gt;';
+							put '			&lt;/SASLibrary&gt;';
+							put '			&lt;Property Name="" DefaultValue=""&gt;';
+							put '			&lt;/Property&gt;';
+							put '			&lt;DatabaseSchema&gt;';
+							put '				&lt;Tables/&gt;';
+							put '			&lt;/DatabaseSchema&gt;';
+							put '			&lt;PhysicalTable Name="" Id="" SASTableName=""&gt;';
+							put '				&lt;TargetClassifierMaps/&gt;';
+							put '				&lt;TargetTransformations/&gt;';
+							put '			&lt;/PhysicalTable&gt;';
+							put '			&lt;TransformationActivity&gt;';
+							put '				&lt;Steps/&gt;';
+							put '			&lt;/TransformationActivity&gt;';
+							put '			&lt;TransformationStep&gt;';
+							put '				&lt;ReferencedObjects/&gt;';
+							put '			&lt;/TransformationStep&gt;';
+							put '			&lt;CustomAssociation&gt;';
+							put '				&lt;OwningObject/&gt;';
+							put '			&lt;/CustomAssociation&gt;';
+							put '			&lt;Job Name=""&gt;';
+							put '				&lt;Trees/&gt;';
+							put '			&lt;/Job&gt;';
+							put '			&lt;Tree Name=""&gt;';
+							put '				&lt;ParentTree/&gt;';
+							put '			&lt;/Tree&gt;';
+							put '		&lt;/Templates&gt;';
+							put '	&lt;XMLSelect';
+							put '		search="SASLibrary[@Name contains ''Viya_'']"/&gt;';
+							put '	&lt;/Options&gt;';
+							put '&lt;/GetMetadataObjects&gt;';
+							run;
+
+							%getMeta(xmllib=Lib);
+							%joinQuery(lib=Lib);
+						</code></pre>
+					</section>
+				</section>
+
+				<section data-background-gradient="linear-gradient(to bottom, #373737, #777)">
+					<h2>Links</h2>
+					<ul>
+						<li>Metadata-makro:<br><a href="https://github.com/clsrskv/SAS/blob/main/Metadata/macro_query_metadata.sas">macro_query_metadata.sas (github)</a></li>
+						<li>Eksempler:<br><a href="https://github.com/clsrskv/SAS/tree/main/Best%20Practise">Best Practise (github)</a></li>
+					</ul>
+				</section>
+
+				<section data-background-gradient="linear-gradient(to bottom, #373737, #777)">
+					<h2>Spørgsmål?</h2>
+				</section>
+
+
+			</div>
+
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/search/search.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+
+			// Also available as an ES module, see:
+			// https://revealjs.com/initialization/
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+			});
+
+		</script>
+
+	</body>
+</html>

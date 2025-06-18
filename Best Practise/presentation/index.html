@@ -42,7 +42,6 @@
 
 	<body>
 
-			console.log(document.querySelectorAll('.slides>section:not(:first-child)')[0].innerHTML);
 		<div class="reveal">
 
 			<!-- Any section element inside of this container is displayed as a slide -->
@@ -93,6 +92,23 @@
 
 				<section data-background-gradient="linear-gradient(to bottom, #373737, #777)">
 					<section>
+						<h3>Denne præsentation indeholder</h3>
+						<p>
+							<ul>
+								<li>Best practise</li>
+								<li>Eksempler</li>
+								<li>...</li>
+							</ul> 
+						<p><span style="font-style: italic">...ikke</span>
+							<ul>
+								<li>Teknisk indføring i proc metadata mv.</li>
+							</ul>
+						</p>
+					</section>
+				</section>
+
+				<section data-background-gradient="linear-gradient(to bottom, #373737, #777)">
+					<section>
 					<h3>Best practise</h3>
 					<h4>Hvad?</h4>
 						<ul>
@@ -127,7 +143,7 @@
 						<h2>Eksempler på opf&oslash;lgning</h2>
 						<p>
 							<ul>
-								<li>Navnvivning</li>
+								<li>Navngivning</li>
 								<li>Jobs, deployments og flows</li>
 								<li>Tabeller og libraries</li>
 								<li>Kolonner</li>
@@ -139,26 +155,35 @@
 
 					<section>
 						<h2>Navngivning</h2>
-						<p>
+						<p>Undgå danske bogstaver og mellemrum
 							<ul>
-								<li>Danske bogstaver - risiko for fejl i afvikling og logovervågning</li>
-								<li>Reducerer overskuelighed</li>
-								<li>Dubletter i metadatanavngivning</li>
+								<li>Afviklingsstabilitet</li>
+								<li>Logovervågning</li>
+								<li>Transparens</li>
 							</ul>
 						</p>
+						<p>Standard for jobnavne
+							<ul>
+								<li>Undgå dubletter</li>
+								<li>Struktur angiver rækkefølge</li>
+								<li>Gruppering af emner</li>
+							</ul>
+						</p>
+						<aside class="notes">
+							Shhh, these are your private notes
+						</aside>
 					</section>
 
 					<section>
 						<h2>Jobs, deployments og flows</h2>
 						<p>
 							<ul>
-								<li>Ingen mellemrum - sammenhæng ml. jobs og deployments</li>
+								<li>Undgå mellemrum i jobnavn</li>
 								<li>Undgå danske karakterer</li>
 								<li>Jobnavne skal være unikke</li>
-								<li>Statushandling på deployede jobs</li>
-								<li>Jobs for hver deployment</li>
-								<li>Scheduleret deployment eksisterer</li>
-								<li>Kode eksisterer</li>
+								<li>Statushandling</li>
+								<li>Findes jobs for hver deployment</li>
+								<li>Eksisterer kode til deployment</li>
 							</ul>
 						</p>
 					</section>
@@ -167,9 +192,9 @@
 						<h2>Tabeller og libraries</h2>
 						<p>
 							<ul>
-								<li>Prefikset med libref</li>
-								<li>Unikke fysiske tabeller</li>
-								<li>Korrekt metadataplacering</li>
+								<li>Libref prefikset på tabelnavn</li>
+								<li>Kun et objekt for hver tabel</li>
+								<li>Metadataplacering ift. dataintegrationsmodel</li>
 							</ul>
 						</p>
 					</section>
@@ -177,6 +202,7 @@
 					<section>
 						<h2>Kolonner</h2>
 							<ul>
+								<li>Anvend standard SAS V9 navngivning</li>
 								<li>Undgå VALIDVARNAME=ANY</li>
 								<li>/^[a-zA-Z_][a-zA-Z0-9_]{1,31}$/</li>
 								<li>Ingen æøå, mellemrum!</li>
@@ -186,6 +212,8 @@
 
 					<section>
 						<h2>Transformationer</h2>
+						<p>
+							Kontrol af options
 							<ul>
 								<li>CAS-loader - replace</li>
 							</ul>
@@ -196,8 +224,8 @@
 						<h2>Andet...?</h2>
 						<p>
 							<ul>
-								<li>Kolonnedefinitioner</li>
-								<li>User Written Code</li>
+								<li class="fragment" data-fragment-index="1">Kolonnedefinitioner</li>
+								<li class="fragment" data-fragment-index="2">User Written Code</li>
 							</ul>
 						</p>
 					</section>
@@ -205,25 +233,26 @@
 
 				<section data-background-gradient="linear-gradient(to bottom, #373737, #777)">
 					<section>
-						<h3>SAS Metadata</h3>
-						<p>Denne præsentation</p>
+						<h3>I praksis</h3>
 						<p>
 							<ul>
-								<li>Eksempler på anvendelse</li>
-								<li>Henvisninger til dokumentation</li>
+								<li>Udtræk fra SAS Metadata</li>
+								<li>Identificér relevante data</li>
+								<li>Anvend regel baseret på best practise</li>
 							</ul> 
 					</section>
 					<section>
-						<h2>SAS Metadata</h2>
-						<p>Indeholder ikke</p>
+						<h3>Udtræk fra metadata</h3>
 						<p>
-							<ul>
-								<li>Vejledning i XML-kodning</li>
-							</ul>
-						</p>
+							<ol>
+								<li>Kode <a href="https://github.com/clsrskv/SAS/blob/main/Metadata/macro_query_metadata.sas">macro_query_metadata.sas</a> anvendes til at flette udtræk af metadata til data mart</li>
+								<li>Koden inkluderes</li>
+								<li>XML tilføjes i data step</li>
+								<li>Makro kaldes</li>
+							</ol>
 					</section>
 					<section>
-						<h2 data-id="code-title">Hent SAS Metadata</h2>
+						<h2 data-id="code-title">Hent metadata</h2>
 						<pre data-id="code-animation"><code class="hljs sas" data-trim data-line-numbers="|1-4|7|48|53-54">
 							%include
 							&#9;'path-to-metadata-join-code/macro_query_metadata.sas'
@@ -281,14 +310,70 @@
 							%joinQuery(lib=Lib);
 						</code></pre>
 					</section>
+					<section>
+						<h3>Data mart</h3>
+						<pre data-id="code-animation"><code class="hljs sas" data-trim data-line-numbers="1-9|11-28">
+							proc sql noprint;
+							select name into :treecols separated by ', '
+							from dictionary.columns
+							where libname eq 'WORK'
+							and memname eq 'METADATA_JOB'
+							and prxmatch('/^Tree(\d+)?_Name\s+$/', name)
+							order by npos desc
+							;
+							quit;
+
+							proc sql;
+							create table
+								work.stp_bp_Jobs(label='Jobs')
+							as select distinct
+								Job_Name label='Job Name',
+								catx('/', &treecols.) as Job_Path label='Metadata Path',
+								Job_Desc label='Job Description',
+								Job_Id label='JobID',
+								CASE JFJob_Id WHEN '' THEN 'No' ELSE 'Yes' END as Deployed label='Deployed'
+							from
+								work.metadata_job
+							having
+								Job_Path not like 'User Folders/%'
+							order by
+								Job_Path,
+								Job_Name
+							;
+							quit;
+						</code></pre>
+					</section>
+					<section>
+						<h2>Kodeeksempler (github)</h2>
+						<ul>
+							<li>Metadata-makro:<br><a href="https://github.com/clsrskv/SAS/blob/main/Metadata/macro_query_metadata.sas">macro_query_metadata.sas</a></li>
+							<li><a href="https://github.com/clsrskv/SAS/blob/main/Best%20Practise/jobs.sas">Jobs</a></li>
+							<li><a href="https://github.com/clsrskv/SAS/blob/main/Best%20Practise/tables.sas">Tabeller</a></li>
+							<li><a href="https://github.com/clsrskv/SAS/blob/main/Best%20Practise/libraries.sas">SAS Libraries</a></li>
+							<li><a href="https://github.com/clsrskv/SAS/blob/main/Best%20Practise/deployments_and_flows.sas">Deployments og flows</a></li>
+							<li><a href="https://github.com/clsrskv/SAS/blob/main/Best%20Practise/status_handling.sas">Status Handling</a></li>
+							<li><a href="https://github.com/clsrskv/SAS/blob/main/Best%20Practise/CAS_loader.sas">CAS Loader</a></li>
+						</ul>
+					</section>
+
+					<section data-background-gradient="linear-gradient(to bottom, #373737, #777)">
+						<h2>Spørgsmål?</h2>
+					</section>
 				</section>
 
 				<section data-background-gradient="linear-gradient(to bottom, #373737, #777)">
-					<h2>Links</h2>
-					<ul>
-						<li>Metadata-makro:<br><a href="https://github.com/clsrskv/SAS/blob/main/Metadata/macro_query_metadata.sas">macro_query_metadata.sas (github)</a></li>
-						<li>Eksempler:<br><a href="https://github.com/clsrskv/SAS/tree/main/Best%20Practise">Best Practise (github)</a></li>
-					</ul>
+					<h2>Links og dokumentation</h2>
+					<p>
+						<ul>
+							<li>Data Integration Standarder, SAS Institute</li>
+							<li><a href="https://documentation.sas.com/doc/en/lrcon/9.4/p18cdcs4v5wd2dn1q0x296d3qek6.htm>Names in the SAS Language</a></li>
+							<li><a href="https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/lrmeta/p0x3vb146tx931n1olxsy430zepl.htm">METADATA Procedure</a></li>
+							<li><a href="https://support.sas.com/documentation/cdl/en/omamodref/67417/HTML/default/viewer.htm#titlepage.htm">SAS® 9.4 Metadata Model: Reference</a></li>
+							<br>
+							<li>Eksempler:<br><a href="https://github.com/clsrskv/SAS/tree/main/Best%20Practise">Best Practise (github)</a></li>
+							<li>Metadata-makro:<br><a href="https://github.com/clsrskv/SAS/blob/main/Metadata/macro_query_metadata.sas">macro_query_metadata.sas (github)</a></li>
+						</ul>
+					</p>
 				</section>
 
 				<section data-background-gradient="linear-gradient(to bottom, #373737, #777)">
